@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Ball extends JPanel implements ActionListener, KeyListener {
-	static int x = 0;//hello
+	static int x = 0;
 	static int y = 0;
 	static int speed = 150;
 
