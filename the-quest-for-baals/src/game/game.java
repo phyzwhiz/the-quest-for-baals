@@ -12,23 +12,27 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import brickBreaker.Ball;
-
 public class game extends JPanel implements ActionListener, KeyListener {
 
 
 	
 	
 	public static void main(String[] args) throws IOException {
-		game run = new game("The Quest For Baals");
+		game run = new game("Game");
 	}
 	
 	private static final long serialVersionUID = 1L;
-	private static int delay = 2;
+	private static int delay = 5;
 	protected Timer timer;
 	Sprite player = new Sprite(100, 100);
-	private boolean right;
-	private boolean left;
+	static int xN = 0;
+	static int yN = 0;
+	private static boolean right = false;
+	private static boolean left = false;
+	private static boolean crouch = false;
+	static boolean jump = false;
+	int jumpcount = 0;
+	int counter = 0;
 
 	
 	public game(String s) throws IOException {
@@ -47,32 +51,28 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	public game() {
 		timer = new Timer(delay, this);
 		timer.start();
-		player = new Sprite (50, 50);
+		player = new Sprite (100, 100);
 	}
 	
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		
-		right = false;
-		left = false;
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_DOWN:
-			player.crouch(right, left);
+			crouch = true;
+			jump = false;
 			break;
 			
 		case KeyEvent.VK_UP:		
-			player.jump();
+			jump = true;
 			break;
 			
 		case KeyEvent.VK_LEFT:
 			left = true;
-			player.left();
-			
 			break;
 			
 		case KeyEvent.VK_RIGHT:
 			right = true;
-			player.right();
 			break;
 		
 		}
@@ -90,11 +90,11 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_DOWN:
-			
+			crouch = false;
 			break;
 			
 		case KeyEvent.VK_UP:	
-			
+			jump = false;
 			break;
 			
 		case KeyEvent.VK_LEFT:
@@ -110,16 +110,34 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		repaint();
-		
-	}
+	public void actionPerformed(ActionEvent e) 
+	{	repaint(); }
 	
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) 
+	{
+		if (right)
+			player.right();
+		if (left)
+			player.left();
+		if (jump && player.isTouch())
+			jumpcount = 20;
+		if (crouch)
+			player.crouch();
+		else
+			player.stand();
+		
+		if(counter++%3 == 0)
+			if (jumpcount > 0) {
+				jumpcount--;
+				player.jump(jumpcount);
+			}
+			else
+				if (!(player.isTouch()))
+					player.jump(jumpcount);
+	
+		
 		player.draw(g);
 	}
 	
-	
-	
+		
 }
