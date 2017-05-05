@@ -20,7 +20,7 @@ public class Sprite {
 		x = startx;
 		y = starty;
 		try {
-			sprite = ImageIO.read(new File("/Users/90307015/Desktop/imgres.png"));
+			sprite = ImageIO.read(new File("img/imgres.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
