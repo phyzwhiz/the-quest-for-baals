@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 public class Sprite {
 	
-	private int speed = 6;
+	private int speed = 10;
 	private static int x;
 	static int y;
 	BufferedImage sprite;
@@ -27,10 +27,24 @@ public class Sprite {
 	}
 
 	public void crouch() 
-	{	halfspeed = true; }
+	{	
+		halfspeed = true; 
+		try {
+			sprite = ImageIO.read(new File("img/aaaaa.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void stand() 
-	{	halfspeed = false; }
+	{	
+		halfspeed = false; 
+		try {
+			sprite = ImageIO.read(new File("img/imgres.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void jump(int i) 
 	{	
@@ -63,14 +77,100 @@ public class Sprite {
 			x += speed;
 	}
 	
-	public boolean isTouch(){
+	public boolean isTouch()
+	{
 		if (y < 400 && y > 300)
 			return true;
 		return false;
 	}
 	
+	public void run (boolean fastswagger, boolean right, boolean left) 
+	{	
+		if (right)
+			if (fastswagger)
+				try {
+					sprite = ImageIO.read(new File("img/rightup.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			else
+				try {
+					sprite = ImageIO.read(new File("img/rightdown.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		
+		if (left)
+			if (fastswagger)
+				try {
+					sprite = ImageIO.read(new File("img/leftup.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			else
+				try {
+					sprite = ImageIO.read(new File("img/leftdown.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+	}
+	
 	public void draw(Graphics g) {		
 		g.drawImage(sprite, x, y, null);
+	}
+
+	public void swagger(boolean swagger, boolean right, boolean left) 
+	{
+			if (swagger && !right && !left)
+				try {
+					sprite = ImageIO.read(new File("img/blue.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			else 
+				try {
+					sprite = ImageIO.read(new File("img/bluedown.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+	}
+	
+	public void crouchSwag(boolean swagger, boolean right, boolean left) 
+	{
+			if (swagger && !right && !left)
+				try {
+					sprite = ImageIO.read(new File("img/red.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			else
+				try {
+					sprite = ImageIO.read(new File("img/reddown.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+	}
+	
+	public void jumpSwag()
+	{
+			try {
+				sprite = ImageIO.read(new File("img/imgres.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	}
+
+	public void crouchRun(boolean fastswagger, boolean right, boolean left) {
+		
+	}
+
+	public void fallSwag() {
+		try {
+			sprite = ImageIO.read(new File("img/aaaaa.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -22,17 +22,19 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	private static final long serialVersionUID = 1L;
-	private static int delay = 5;
+	private static int delay = 15;
 	protected Timer timer;
 	Sprite player = new Sprite(100, 100);
 	static int xN = 0;
 	static int yN = 0;
-	private static boolean right = false;
-	private static boolean left = false;
-	private static boolean crouch = false;
+	static boolean right = false;
+	static boolean left = false;
+	static boolean crouch = false;
 	static boolean jump = false;
 	int jumpcount = 0;
-	int counter = 0;
+	static int counter = 0;
+	static boolean swagger = false;
+	static boolean fastswagger;
 
 	
 	public game(String s) throws IOException {
@@ -126,7 +128,36 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		else
 			player.stand();
 		
-		if(counter++%3 == 0)
+		if(counter++%1 == 0)
+			if (counter%60 == 0) 
+				if (swagger)
+					swagger = false;
+				else 
+					swagger = true;
+			if (counter%10 == 0)
+				if (fastswagger)
+					fastswagger = false;
+				else 
+					fastswagger = true;
+		
+			if (jump)
+				player.fallSwag();
+			else if (!player.isTouch())
+				player.jumpSwag();
+			else if (crouch)
+				player.crouchSwag(swagger, right, left);
+			else
+				player.swagger(swagger, right, left);
+			
+			if (jump)
+				player.fallSwag();
+			else if (!player.isTouch())
+				player.jumpSwag();
+			else if (crouch)
+				player.crouchRun(fastswagger, right, left);
+			else
+				player.run(fastswagger, right, left); 
+			
 			if (jumpcount > 0) {
 				jumpcount--;
 				player.jump(jumpcount);
