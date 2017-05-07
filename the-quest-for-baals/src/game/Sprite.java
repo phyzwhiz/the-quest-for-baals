@@ -70,19 +70,21 @@ public class Sprite {
 	{	
 		if (right)
 			if (fastswagger == 0)
-				setPic("img/blue.png");
+				setPic("img/rightrun0.png");
 			else if (fastswagger == 1)
-				setPic("img/rightup.png");
+				setPic("img/rightrun1.png");
 			else if (fastswagger == 2)
-				setPic("img/rightdown.png");
+				setPic("img/rightrun2.png");
 			else if (fastswagger == 3)
-				setPic("img/bluedown.png");
+				setPic("img/rightrun3.png");
 			else if (fastswagger == 4)
-				setPic("img/reddown.png");
+				setPic("img/rightrun4.png");
 			else if (fastswagger == 5)
-				setPic("img/rightdown.png");
-			else
-				setPic("img/rightup.png");
+				setPic("img/rightrun5.png");
+			else if (fastswagger == 6)
+				setPic("img/rightrun6.png");
+			else 
+				setPic("img/rightrun7.png");
 		
 		if (left)
 			if (fastswagger == 0)
@@ -97,8 +99,10 @@ public class Sprite {
 				setPic("img/reddown.png");
 			else if (fastswagger == 5)
 				setPic("img/leftdown.png");
-			else
+			else if (fastswagger == 6)
 				setPic("img/leftup.png");
+			else 
+				setPic("img/red.png");
 				
 	}
 	
@@ -136,8 +140,10 @@ public class Sprite {
 			setPic("img/five.png");
 		else if (fastswagger == 5)
 			setPic("img/six.png");
-		else {
+		else if (fastswagger == 6)
 			setPic("img/seven.png");
+		else {
+			setPic("img/one.png");
 			game.jumpfin = true;
 			game.fliptimer = 0;
 		}
@@ -157,8 +163,10 @@ public class Sprite {
 				setPic("img/e.png");
 			else if (fastswagger == 5)
 				setPic("img/f.png");
-			else
+			else if (fastswagger == 6)
 				setPic("img/g.png");
+			else 
+				setPic("img/a.png");
 		if (left)
 			if (fastswagger == 0)
 				setPic("img/onedot.png");
@@ -172,8 +180,10 @@ public class Sprite {
 				setPic("img/fivedot.png");
 			else if (fastswagger == 5)
 				setPic("img/sixdot.png");
-			else
+			else if (fastswagger == 6)
 				setPic("img/sevendot.png");
+			else
+				setPic("img/onedot.png");
 	}
 
 	public void fallSwag() {

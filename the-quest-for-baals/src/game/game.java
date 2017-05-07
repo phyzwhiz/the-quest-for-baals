@@ -146,7 +146,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 				fastswagger++;
 			}
 			
-			if (fastswagger == 7)
+			if (fastswagger == 8)
 				fastswagger = 0;
 			
 			if (counter%5 == 0 && !jumpfin)
