@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 public class Sprite {
 	
-	private int speed = 10;
+	private int speed = 12;
 	private static int x;
 	static int y;
 	BufferedImage sprite;
@@ -19,32 +19,14 @@ public class Sprite {
 	public Sprite(int startx, int starty)  {
 		x = startx;
 		y = starty;
-		try {
-			sprite = ImageIO.read(new File("img/imgres.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		setPic("img/imgres.png");
 	}
 
 	public void crouch() 
-	{	
-		halfspeed = true; 
-		try {
-			sprite = ImageIO.read(new File("img/aaaaa.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	{	halfspeed = true; }
 	
 	public void stand() 
-	{	
-		halfspeed = false; 
-		try {
-			sprite = ImageIO.read(new File("img/imgres.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	{	halfspeed = false; }
 
 	public void jump(int i) 
 	{	
@@ -84,35 +66,39 @@ public class Sprite {
 		return false;
 	}
 	
-	public void run (boolean fastswagger, boolean right, boolean left) 
+	public void run (int fastswagger, boolean right, boolean left) 
 	{	
 		if (right)
-			if (fastswagger)
-				try {
-					sprite = ImageIO.read(new File("img/rightup.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			if (fastswagger == 0)
+				setPic("img/blue.png");
+			else if (fastswagger == 1)
+				setPic("img/rightup.png");
+			else if (fastswagger == 2)
+				setPic("img/rightdown.png");
+			else if (fastswagger == 3)
+				setPic("img/bluedown.png");
+			else if (fastswagger == 4)
+				setPic("img/reddown.png");
+			else if (fastswagger == 5)
+				setPic("img/rightdown.png");
 			else
-				try {
-					sprite = ImageIO.read(new File("img/rightdown.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				setPic("img/rightup.png");
 		
 		if (left)
-			if (fastswagger)
-				try {
-					sprite = ImageIO.read(new File("img/leftup.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			if (fastswagger == 0)
+				setPic("img/blue.png");
+			else if (fastswagger == 1)
+				setPic("img/leftup.png");
+			else if (fastswagger == 2)
+				setPic("img/leftdown.png");
+			else if (fastswagger == 3)
+				setPic("img/bluedown.png");
+			else if (fastswagger == 4)
+				setPic("img/reddown.png");
+			else if (fastswagger == 5)
+				setPic("img/leftdown.png");
 			else
-				try {
-					sprite = ImageIO.read(new File("img/leftdown.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				setPic("img/leftup.png");
 				
 	}
 	
@@ -123,54 +109,85 @@ public class Sprite {
 	public void swagger(boolean swagger, boolean right, boolean left) 
 	{
 			if (swagger && !right && !left)
-				try {
-					sprite = ImageIO.read(new File("img/blue.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				setPic("img/blue.png");
 			else 
-				try {
-					sprite = ImageIO.read(new File("img/bluedown.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				setPic("img/bluedown.png");
 	}
 	
 	public void crouchSwag(boolean swagger, boolean right, boolean left) 
 	{
-			if (swagger && !right && !left)
-				try {
-					sprite = ImageIO.read(new File("img/red.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			else
-				try {
-					sprite = ImageIO.read(new File("img/reddown.png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				if (swagger && !right && !left)
+					setPic("img/red.png");
+				else 
+					setPic("img/reddown.png");
 	}
 	
-	public void jumpSwag()
+	public void jumpSwag(int fastswagger)
 	{
-			try {
-				sprite = ImageIO.read(new File("img/imgres.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		if (fastswagger == 0)
+			setPic("img/one.png");
+		else if (fastswagger == 1)
+			setPic("img/two.png");
+		else if (fastswagger == 2)
+			setPic("img/three.png");
+		else if (fastswagger == 3)
+			setPic("img/four.png");
+		else if (fastswagger == 4)
+			setPic("img/five.png");
+		else if (fastswagger == 5)
+			setPic("img/six.png");
+		else {
+			setPic("img/seven.png");
+			game.jumpfin = true;
+			game.fliptimer = 0;
+		}
 	}
 
-	public void crouchRun(boolean fastswagger, boolean right, boolean left) {
-		
+	public void crouchRun(int fastswagger, boolean right, boolean left) {
+		if (right)
+			if (fastswagger == 0)
+				setPic("img/a.png");
+			else if (fastswagger == 1)
+				setPic("img/b.png");
+			else if (fastswagger == 2)
+				setPic("img/c.png");
+			else if (fastswagger == 3)
+				setPic("img/d.png");
+			else if (fastswagger == 4)
+				setPic("img/e.png");
+			else if (fastswagger == 5)
+				setPic("img/f.png");
+			else
+				setPic("img/g.png");
+		if (left)
+			if (fastswagger == 0)
+				setPic("img/onedot.png");
+			else if (fastswagger == 1)
+				setPic("img/twodot.png");
+			else if (fastswagger == 2)
+				setPic("img/threedot.png");
+			else if (fastswagger == 3)
+				setPic("img/fourdot.png");
+			else if (fastswagger == 4)
+				setPic("img/fivedot.png");
+			else if (fastswagger == 5)
+				setPic("img/sixdot.png");
+			else
+				setPic("img/sevendot.png");
 	}
 
 	public void fallSwag() {
+		setPic("img/aaaaa.png");
+	}
+	
+	private void setPic(String name)
+	{	
 		try {
-			sprite = ImageIO.read(new File("img/aaaaa.png"));
+			sprite = ImageIO.read(new File(name));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	
 	}
 
 }

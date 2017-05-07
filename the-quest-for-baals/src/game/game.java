@@ -34,7 +34,9 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	int jumpcount = 0;
 	static int counter = 0;
 	static boolean swagger = false;
-	static boolean fastswagger;
+	static int fastswagger = 0;
+	static boolean jumpfin = true;
+	static int fliptimer;
 
 	
 	public game(String s) throws IOException {
@@ -121,42 +123,50 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			player.right();
 		if (left)
 			player.left();
-		if (jump && player.isTouch())
+		if (jump && player.isTouch()) {
+			fliptimer = 0;
 			jumpcount = 20;
+			jumpfin = false;
+		}
 		if (crouch)
 			player.crouch();
 		else
 			player.stand();
 		
-		if(counter++%1 == 0)
+		counter++;
+		
+		
 			if (counter%60 == 0) 
 				if (swagger)
 					swagger = false;
 				else 
 					swagger = true;
-			if (counter%10 == 0)
-				if (fastswagger)
-					fastswagger = false;
-				else 
-					fastswagger = true;
-		
-			if (jump)
-				player.fallSwag();
-			else if (!player.isTouch())
-				player.jumpSwag();
-			else if (crouch)
-				player.crouchSwag(swagger, right, left);
-			else
-				player.swagger(swagger, right, left);
 			
-			if (jump)
-				player.fallSwag();
+			if (counter%5 == 0) {
+				fastswagger++;
+			}
+			
+			if (fastswagger == 7)
+				fastswagger = 0;
+			
+			if (counter%5 == 0 && !jumpfin)
+				fliptimer++;
+				
+			if (!jumpfin)
+				player.jumpSwag(fliptimer);
 			else if (!player.isTouch())
-				player.jumpSwag();
+				player.fallSwag();
 			else if (crouch)
-				player.crouchRun(fastswagger, right, left);
+				if (right || left)
+					player.crouchRun(fastswagger, right, left);
+				else
+					player.crouchSwag(swagger, right, left);
 			else
-				player.run(fastswagger, right, left); 
+				if (right || left)
+					player.run(fastswagger, right, left); 
+				else
+					player.swagger(swagger, right, left);
+
 			
 			if (jumpcount > 0) {
 				jumpcount--;
@@ -164,8 +174,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			}
 			else
 				if (!(player.isTouch()))
-					player.jump(jumpcount);
-	
+					player.jump(jumpcount);	
 		
 		player.draw(g);
 	}
