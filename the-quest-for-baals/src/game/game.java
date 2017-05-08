@@ -22,17 +22,21 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	private static final long serialVersionUID = 1L;
-	private static int delay = 5;
+	private static int delay = 15;
 	protected Timer timer;
 	Sprite player = new Sprite(100, 100);
 	static int xN = 0;
 	static int yN = 0;
-	private static boolean right = false;
-	private static boolean left = false;
-	private static boolean crouch = false;
+	static boolean right = false;
+	static boolean left = false;
+	static boolean crouch = false;
 	static boolean jump = false;
 	int jumpcount = 0;
-	int counter = 0;
+	static int counter = 0;
+	static boolean swagger = false;
+	static int fastswagger = 0;
+	static boolean jumpfin = true;
+	static int fliptimer;
 
 	
 	public game(String s) throws IOException {
@@ -119,22 +123,58 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			player.right();
 		if (left)
 			player.left();
-		if (jump && player.isTouch())
+		if (jump && player.isTouch()) {
+			fliptimer = 0;
 			jumpcount = 20;
+			jumpfin = false;
+		}
 		if (crouch)
 			player.crouch();
 		else
 			player.stand();
 		
-		if(counter++%3 == 0)
+		counter++;
+		
+		
+			if (counter%60 == 0) 
+				if (swagger)
+					swagger = false;
+				else 
+					swagger = true;
+			
+			if (counter%5 == 0) {
+				fastswagger++;
+			}
+			
+			if (fastswagger == 8)
+				fastswagger = 0;
+			
+			if (counter%5 == 0 && !jumpfin)
+				fliptimer++;
+				
+			if (!jumpfin)
+				player.jumpSwag(fliptimer);
+			else if (!player.isTouch())
+				player.fallSwag();
+			else if (crouch)
+				if (right || left)
+					player.crouchRun(fastswagger, right, left);
+				else
+					player.crouchSwag(swagger, right, left);
+			else
+				if (right || left)
+					player.run(fastswagger, right, left); 
+				else
+					player.swagger(swagger, right, left);
+
+			
 			if (jumpcount > 0) {
 				jumpcount--;
 				player.jump(jumpcount);
 			}
 			else
 				if (!(player.isTouch()))
-					player.jump(jumpcount);
-	
+					player.jump(jumpcount);	
 		
 		player.draw(g);
 	}
