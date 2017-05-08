@@ -17,7 +17,8 @@ public class game extends JPanel implements ActionListener, KeyListener {
 
 	
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException
+	{
 		game run = new game("Game");
 	}
 	
@@ -39,28 +40,27 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	static int fliptimer;
 
 	
-	public game(String s) throws IOException {
-		
+	public game(String s) throws IOException 
+	{	
 		JFrame frame = new JFrame(s);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game bp = new game();
 		frame.addKeyListener(this);
 		frame.add(bp);
 		frame.setSize(1366, 738);
-		frame.setVisible(true);
-
-		
+		frame.setVisible(true);		
 	}
 	
-	public game() {
+	public game() 
+	{
 		timer = new Timer(delay, this);
 		timer.start();
 		player = new Sprite (100, 100);
 	}
 	
 	@Override
-	public synchronized void keyPressed(KeyEvent e) {
-		
+	public synchronized void keyPressed(KeyEvent e) 
+	{
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_DOWN:
 			crouch = true;
@@ -78,20 +78,18 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		case KeyEvent.VK_RIGHT:
 			right = true;
 			break;
-		
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) 
+	{
 		
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		
-		
-	}
-
-	@Override
-	public synchronized void keyReleased(KeyEvent e) {
-		
+	public synchronized void keyReleased(KeyEvent e) 
+	{
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_DOWN:
 			crouch = false;
@@ -108,9 +106,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		case KeyEvent.VK_RIGHT:
 			right = false;
 			break;
-		
 		}
-		
 	}
 
 	@Override

@@ -191,8 +191,7 @@ public class Sprite {
 			sprite = animate.get(fastswagger+24);
 	}
 
-	public void fallSwag() {
-		sprite = animate.get(40);
-	}
+	public void fallSwag() 
+	{	sprite = animate.get(40); }
 
 }
