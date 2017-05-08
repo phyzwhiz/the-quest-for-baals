@@ -119,6 +119,18 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	
 	public void paintComponent(Graphics g) 
 	{
+		counter++;
+		
+		playerActions();
+		
+		enemyActions();
+			
+		player.draw(g);
+	}
+	
+	private void playerActions() 
+	{
+		/** movement */
 		if (right)
 			player.right();
 		if (left)
@@ -132,52 +144,50 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			player.crouch();
 		else
 			player.stand();
+		/** end movement */
 		
-		counter++;
 		
+		/** swagger */
+		if (counter%60 == 0) 
+			if (swagger)
+				swagger = false;
+			else 
+				swagger = true;
+		/** fastswagger */
+		if (counter%5 == 0)
+			fastswagger++;
+		if (fastswagger == 8)
+			fastswagger = 0;
+		if (counter%5 == 0 && !jumpfin)
+			fliptimer++;
 		
-			if (counter%60 == 0) 
-				if (swagger)
-					swagger = false;
-				else 
-					swagger = true;
-			
-			if (counter%5 == 0) {
-				fastswagger++;
-			}
-			
-			if (fastswagger == 8)
-				fastswagger = 0;
-			
-			if (counter%5 == 0 && !jumpfin)
-				fliptimer++;
-				
-			if (!jumpfin)
-				player.jumpSwag(fliptimer);
-			else if (!player.isTouch())
-				player.fallSwag();
-			else if (crouch)
-				if (right || left)
-					player.crouchRun(fastswagger, right, left);
-				else
-					player.crouchSwag(swagger, right, left);
+		/** run movement animations */	
+		if (!jumpfin)
+			player.jumpSwag(fliptimer);
+		else if (!player.isTouch())
+			player.fallSwag();
+		else if (crouch)
+			if (right || left)
+				player.crouchRun(fastswagger, right, left);
 			else
-				if (right || left)
-					player.run(fastswagger, right, left); 
-				else
-					player.swagger(swagger, right, left);
-
-			
-			if (jumpcount > 0) {
-				jumpcount--;
-				player.jump(jumpcount);
-			}
+				player.crouchSwag(swagger, right, left);
+		else
+			if (right || left)
+				player.run(fastswagger, right, left); 
 			else
-				if (!(player.isTouch()))
-					player.jump(jumpcount);	
+				player.swagger(swagger, right, left);
 		
-		player.draw(g);
+		/** jump/fall movement */
+		if (jumpcount > 0) {
+			jumpcount--;
+			player.jump(jumpcount);
+		}
+		else
+			if (!(player.isTouch()))
+				player.jump(jumpcount);	
 	}
 	
-		
+	private void enemyActions()
+	{}
+	
 }
