@@ -17,7 +17,8 @@ public class game extends JPanel implements ActionListener, KeyListener {
 
 	
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException
+	{
 		game run = new game("Game");
 	}
 	
@@ -39,28 +40,27 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	static int fliptimer;
 
 	
-	public game(String s) throws IOException {
-		
+	public game(String s) throws IOException 
+	{	
 		JFrame frame = new JFrame(s);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game bp = new game();
 		frame.addKeyListener(this);
 		frame.add(bp);
 		frame.setSize(1366, 738);
-		frame.setVisible(true);
-
-		
+		frame.setVisible(true);		
 	}
 	
-	public game() {
+	public game() 
+	{
 		timer = new Timer(delay, this);
 		timer.start();
 		player = new Sprite (100, 100);
 	}
 	
 	@Override
-	public synchronized void keyPressed(KeyEvent e) {
-		
+	public synchronized void keyPressed(KeyEvent e) 
+	{
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_DOWN:
 			crouch = true;
@@ -78,20 +78,18 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		case KeyEvent.VK_RIGHT:
 			right = true;
 			break;
-		
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) 
+	{
 		
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		
-		
-	}
-
-	@Override
-	public synchronized void keyReleased(KeyEvent e) {
-		
+	public synchronized void keyReleased(KeyEvent e) 
+	{
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_DOWN:
 			crouch = false;
@@ -108,9 +106,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		case KeyEvent.VK_RIGHT:
 			right = false;
 			break;
-		
 		}
-		
 	}
 
 	@Override
@@ -119,6 +115,18 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	
 	public void paintComponent(Graphics g) 
 	{
+		counter++;
+		
+		playerActions();
+		
+		enemyActions();
+			
+		player.draw(g);
+	}
+	
+	private void playerActions() 
+	{
+		/** movement */
 		if (right)
 			player.right();
 		if (left)
@@ -132,52 +140,50 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			player.crouch();
 		else
 			player.stand();
+		/** end movement */
 		
-		counter++;
 		
+		/** swagger */
+		if (counter%60 == 0) 
+			if (swagger)
+				swagger = false;
+			else 
+				swagger = true;
+		/** fastswagger */
+		if (counter%5 == 0)
+			fastswagger++;
+		if (fastswagger == 8)
+			fastswagger = 0;
+		if (counter%5 == 0 && !jumpfin)
+			fliptimer++;
 		
-			if (counter%60 == 0) 
-				if (swagger)
-					swagger = false;
-				else 
-					swagger = true;
-			
-			if (counter%5 == 0) {
-				fastswagger++;
-			}
-			
-			if (fastswagger == 8)
-				fastswagger = 0;
-			
-			if (counter%5 == 0 && !jumpfin)
-				fliptimer++;
-				
-			if (!jumpfin)
-				player.jumpSwag(fliptimer);
-			else if (!player.isTouch())
-				player.fallSwag();
-			else if (crouch)
-				if (right || left)
-					player.crouchRun(fastswagger, right, left);
-				else
-					player.crouchSwag(swagger, right, left);
+		/** run movement animations */	
+		if (!jumpfin)
+			player.jumpSwag(fliptimer);
+		else if (!player.isTouch())
+			player.fallSwag();
+		else if (crouch)
+			if (right || left)
+				player.crouchRun(fastswagger, right, left);
 			else
-				if (right || left)
-					player.run(fastswagger, right, left); 
-				else
-					player.swagger(swagger, right, left);
-
-			
-			if (jumpcount > 0) {
-				jumpcount--;
-				player.jump(jumpcount);
-			}
+				player.crouchSwag(swagger, right, left);
+		else
+			if (right || left)
+				player.run(fastswagger, right, left); 
 			else
-				if (!(player.isTouch()))
-					player.jump(jumpcount);	
+				player.swagger(swagger, right, left);
 		
-		player.draw(g);
+		/** jump/fall movement */
+		if (jumpcount > 0) {
+			jumpcount--;
+			player.jump(jumpcount);
+		}
+		else
+			if (!(player.isTouch()))
+				player.jump(jumpcount);	
 	}
 	
-		
+	private void enemyActions()
+	{}
+	
 }
