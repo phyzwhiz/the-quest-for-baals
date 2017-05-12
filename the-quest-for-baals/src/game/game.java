@@ -38,7 +38,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	static int fastswagger = 0;
 	static boolean jumpfin = true;
 	static int fliptimer;
-
+	Level level;
 	
 	public game(String s) throws IOException 
 	{	
@@ -53,9 +53,12 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	
 	public game() 
 	{
+		
+		level = new Level(1);
 		timer = new Timer(delay, this);
 		timer.start();
 		player = new Fighter (100, 100);
+		
 	}
 	
 	@Override
@@ -121,6 +124,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		
 		enemyActions();
 			
+		Ground.draw(g);
 		player.draw(g);
 	}
 	
@@ -131,7 +135,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			player.right();
 		if (left)
 			player.left();
-		if (jump && player.isTouch()) {
+		if (jump && player.isStand()) {
 			fliptimer = 0;
 			jumpcount = 20;
 			jumpfin = false;
@@ -154,24 +158,24 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			fastswagger++;
 		if (fastswagger == 8)
 			fastswagger = 0;
-		if (counter%5 == 0 && !jumpfin)
+		if (counter%2== 0 && !jumpfin)
 			fliptimer++;
 		
 		/** run movement animations */	
 		if (!jumpfin)
 			player.jumpSwag(fliptimer);
-		else if (!player.isTouch())
+		else if (!player.isStand())
 			player.fallSwag();
 		else if (crouch)
 			if (right || left)
 				player.crouchRun(fastswagger, right, left);
 			else
-				player.crouchSwag(swagger, right, left);
+				player.crouchSwag(swagger);
 		else
 			if (right || left)
 				player.run(fastswagger, right, left); 
 			else
-				player.swagger(swagger, right, left);
+				player.swagger(swagger);
 		
 		/** jump/fall movement */
 		if (jumpcount > 0) {
@@ -179,7 +183,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 			player.jump(jumpcount);
 		}
 		else
-			if (!(player.isTouch()))
+			if (!(player.isStand()))
 				player.jump(jumpcount);	
 	}
 	
