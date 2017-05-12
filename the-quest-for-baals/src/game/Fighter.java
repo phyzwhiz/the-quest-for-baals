@@ -85,12 +85,12 @@ public class Fighter extends Sprite {
 				animate.add(ImageIO.read(new File("img/aaaaa.png")));
 				
 				/** 41-42 upswagger right/left */
-				animate.add(ImageIO.read(new File("img/blue.png")));
-				animate.add(ImageIO.read(new File("img/blue.png")));
+				animate.add(ImageIO.read(new File("img/fusr.png")));
+				animate.add(ImageIO.read(new File("img/fusl.png")));
 				
 				/** 43-44 downswagger right/left */
-				animate.add(ImageIO.read(new File("img/bluedown.png")));
-				animate.add(ImageIO.read(new File("img/bluedown.png")));
+				animate.add(ImageIO.read(new File("img/fdsr.png")));
+				animate.add(ImageIO.read(new File("img/fdsl.png")));
 
 				/** 45-46 crouch up swagger right/left */
 				animate.add(ImageIO.read(new File("img/red.png")));

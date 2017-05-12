@@ -54,7 +54,7 @@ public abstract class Sprite {
 	
 	public boolean isTouch()
 	{
-		if (y < 400 && y > 300)
+		if (y < 700 && y > 600)
 			return true;
 		return false;
 	}
