@@ -25,7 +25,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	private static final long serialVersionUID = 1L;
 	private static int delay = 15;
 	protected Timer timer;
-	Sprite player = new Sprite(100, 100);
+	Sprite player;
 	static int xN = 0;
 	static int yN = 0;
 	static boolean right = false;
@@ -55,7 +55,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	{
 		timer = new Timer(delay, this);
 		timer.start();
-		player = new Sprite (100, 100);
+		player = new Fighter (100, 100);
 	}
 	
 	@Override
