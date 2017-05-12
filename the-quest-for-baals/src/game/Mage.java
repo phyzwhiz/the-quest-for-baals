@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public class Fighter extends Sprite {
+public class Mage extends Sprite {
 
 	private ArrayList<BufferedImage> animate = new ArrayList<BufferedImage>();
 	BufferedImage sprite;
 	boolean lastmove = true;
 	int feet;
 
-	public Fighter(int startx, int starty) {
+	public Mage(int startx, int starty) {
 		super(startx, starty);
 		load();
 	}
@@ -93,8 +93,8 @@ public class Fighter extends Sprite {
 				animate.add(ImageIO.read(new File("img/one.png")));
 				
 				/** 48-49 fall right/left*/
-				animate.add(ImageIO.read(new File("img/ffallr.png")));
-				animate.add(ImageIO.read(new File("img/ffalll.png")));
+				animate.add(ImageIO.read(new File("img/aaaaa.png")));
+				animate.add(ImageIO.read(new File("img/aaaaa.png")));
 				
 				/** 50-51 upswagger right/left */
 				animate.add(ImageIO.read(new File("img/fusr.png")));
@@ -135,7 +135,7 @@ public class Fighter extends Sprite {
 		}
 	}
 	
-	public void draw(Graphics g) {		
+	public void draw(Graphics g) {	
 		feet = Sprite.y + sprite.getHeight();
 		g.drawImage(sprite, Sprite.x, Sprite.y, null);
 	}
@@ -189,31 +189,14 @@ public class Fighter extends Sprite {
 	}
 
 	public void fallSwag() 
-	{	
-		if (lastmove)
+	{	if (lastmove)
 			sprite = animate.get(48);
 		else 
 			sprite = animate.get(49);
 	}
 	
-	//public boolean isStand() 
-	//{
-		//if (Sprite.y > 600 && Sprite.y < 700)
-			//return true;
-		//return false;
-	//}
-	
 	public boolean isStand()
 	{
-		for(Block block: Ground.all)
-		{
-			if (block.isCollide() &&
-					Sprite.x > block.x &&
-					Sprite.x < block.x2 &&
-					feet < block.y + 10 &&
-					feet > block.y - 10)
-				return true;
-		}
 		return false;
 	}
 

@@ -23,18 +23,14 @@ public abstract class Sprite {
 
 	public void jump(int i) 
 	{	
-		if (i > 4)
+		if (i > 0)
 			y -= 25;
-		else if (i > 2)
-			y -= 15;
-		else if (i > 0)
-			y -= 5;
 		else 
-			fall(i);
+			fall();
 	}
 	
-	public void fall(int i) {
-		if (isTouch() == false)
+	public void fall() {
+		if (!isStand())
 			y += 25;
 	}
 
@@ -52,20 +48,15 @@ public abstract class Sprite {
 			x += speed;
 	}
 	
-	public boolean isTouch()
-	{
-		if (y < 700 && y > 600)
-			return true;
-		return false;
-	}
+	public abstract boolean isStand();
 	
 	public abstract void run (int fastswagger, boolean right, boolean left);
 	
 	public abstract void draw(Graphics g); 
 
-	public abstract void swagger(boolean swagger, boolean right, boolean left);
+	public abstract void swagger(boolean swagger);
 	
-	public abstract void crouchSwag(boolean swagger, boolean right, boolean left);
+	public abstract void crouchSwag(boolean swagger);
 	
 	public abstract void jumpSwag(int fastswagger);
 
