@@ -11,12 +11,12 @@ public class Level {
 	
 	public void constructOne()
 	{
-		Ground.add(new Block(0, true, 0, 600));
-		Ground.add(new Block(0, true, 100, 600));
-		Ground.add(new Block(0, true, 200, 600));
-		Ground.add(new Block(0, true, 300, 600));
-		Ground.add(new Block(0, true, 400, 600));
-		Ground.add(new Block(0, true, 500, 600));
+		Ground.add(new Block(0, 0, 600));
+		Ground.add(new Block(0, 100, 600));
+		Ground.add(new Block(0, 200, 600));
+		Ground.add(new Block(0, 300, 600));
+		Ground.add(new Block(0, 400, 600));
+		Ground.add(new Block(0, 500, 600));
 		
 	}
 	

@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Ground {
@@ -19,7 +20,11 @@ public class Ground {
 	public static void draw(Graphics g)
 	{
 		for(Block block : all)
-			block.draw(g);
+			try {
+				block.draw(g);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	}
 	
 }
