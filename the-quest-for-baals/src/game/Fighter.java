@@ -205,15 +205,15 @@ public class Fighter extends Sprite {
 	
 	public boolean isStand()
 	{
-		for(Block block: Ground.all)
-		{
-			if (block.isCollide() &&
-					Sprite.x > block.x &&
-					Sprite.x < block.x2 &&
-					feet < block.y + 10 &&
-					feet > block.y - 10)
-				return true;
-		}
+//		for(Block block: Ground.all)
+//		{
+//			if (block.isCollide() &&
+//					Sprite.x > block.x &&
+//					Sprite.x < block.x2 &&
+//					feet < block.y + 10 &&
+//					feet > block.y - 10)
+//				return true;
+//		}
 		return false;
 	}
 
