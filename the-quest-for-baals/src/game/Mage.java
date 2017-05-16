@@ -1,7 +1,5 @@
 package game;
 
-import static game.Sprite.x;
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -199,5 +197,18 @@ public class Mage extends Sprite {
 	{
 		return false;
 	}
+
+    @Override
+    public void drawMask(Graphics g) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void updateMask() {
+        // TODO Auto-generated method stub
+        
+    }
+
 
 }

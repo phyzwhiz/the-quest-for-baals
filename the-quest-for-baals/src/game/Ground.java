@@ -27,4 +27,8 @@ public class Ground {
 			}
 	}
 	
+	public static ArrayList<Block> getGroundList(){
+	    return all;
+	}
+	
 }

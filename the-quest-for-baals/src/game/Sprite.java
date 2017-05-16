@@ -3,8 +3,8 @@ package game;
 import java.awt.Graphics;
 
 public abstract class Sprite {
-	
-	private int speed = 12;
+
+    private int speed = 10;
 	static int x;
 	static int y;
 	private boolean halfspeed = false;
@@ -13,6 +13,10 @@ public abstract class Sprite {
 	public Sprite(int startx, int starty)  {
 		x = startx;
 		y = starty;
+	}
+	
+	public int getY(){
+	    return y;
 	}
 
 	public void crouch()
@@ -48,6 +52,10 @@ public abstract class Sprite {
 			x += speed;
 	}
 	
+	public void setY(int u) {
+       y = u;
+    }
+	
 	public abstract boolean isStand();
 	
 	public abstract void run (int fastswagger, boolean right, boolean left);
@@ -61,11 +69,18 @@ public abstract class Sprite {
 	public abstract void jumpSwag(int fastswagger);
 
 	public abstract void crouchRun(int fastswagger, boolean right, boolean left);
+	
+	public abstract void drawMask(Graphics g);
 
 	public abstract void fallSwag(); 
+	
+    public abstract void updateMask();
+
 	
 	public abstract void attack();
 	
 	public abstract void load();
+	
+
 
 }

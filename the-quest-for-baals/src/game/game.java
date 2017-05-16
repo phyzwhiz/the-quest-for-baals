@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +22,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	private static final long serialVersionUID = 1L;
-	private static int delay = 15;
+	private static int delay = 20;
 	protected Timer timer;
 	Sprite player;
 	static int xN = 0;
@@ -57,7 +56,7 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		level = new Level(1);
 		timer = new Timer(delay, this);
 		timer.start();
-		player = new Fighter (100, 100);
+		player = new Fighter (100,100);
 		
 	}
 	
@@ -116,8 +115,20 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) 
 	{	repaint(); }
 	
-	public void paintComponent(Graphics g) 
+	@SuppressWarnings("static-access")
+    public void paintComponent(Graphics g) 
 	{
+	 
+	   
+	    player.updateMask();
+	    player.drawMask(g);
+	if(player.y==900){
+	    player.y=0;
+	       player.x=100;
+
+	}
+	  
+	    
 		counter++;
 		
 		playerActions();
@@ -125,11 +136,14 @@ public class game extends JPanel implements ActionListener, KeyListener {
 		enemyActions();
 			
 		Ground.draw(g);
-		player.draw(g);
+	     // player.draw(g);
+
 	}
 	
 	private void playerActions() 
 	{
+	    
+	     
 		/** movement */
 		if (right)
 			player.right();
