@@ -21,7 +21,7 @@ public class Fighter extends Sprite {
     BufferedImage sprite;
     boolean lastmove = true;
     int feet;
-
+    
     static Collide collsionCheck = new Collide();
     
     public Fighter(int startx, int starty) {
@@ -117,10 +117,14 @@ public class Fighter extends Sprite {
             /** 56-57 crouch down swagger right/left */
             animate.add(ImageIO.read(new File("img/red.png")));
             animate.add(ImageIO.read(new File("img/reddown.png")));
-            
-            for(BufferedImage img: animate){
+
+            for(BufferedImage img : animate){
                 maskCreator(img);
             }
+            
+//            for(int i = 0; i<animate.size();i++) {
+//                maskCreator(animate.get(animate.size()-1));
+//            }
             
         }
         catch(IOException e) {
@@ -133,13 +137,13 @@ public class Fighter extends Sprite {
             sprite = animate.get(fastswagger);
             lastmove = true;
             currentList = mask.get(fastswagger);
-
+            
         }
         
         if(left) {
             sprite = animate.get(fastswagger + 8);
             currentList = mask.get(fastswagger + 8);
-
+            
             lastmove = false;
         }
     }
@@ -151,65 +155,65 @@ public class Fighter extends Sprite {
     
     public void swagger(boolean swagger) {
         if(lastmove)
-            if(swagger){
+            if(swagger) {
                 sprite = animate.get(50);
                 currentList = mask.get(50);
-
+                
             }
-            else{
+            else {
                 sprite = animate.get(52);
                 currentList = mask.get(52);
-
+                
             }
-        else if(swagger){
+        else if(swagger) {
             sprite = animate.get(51);
             currentList = mask.get(51);
-
+            
         }
-        else{
+        else {
             sprite = animate.get(53);
             currentList = mask.get(53);
-
+            
         }
     }
     
     public void crouchSwag(boolean swagger) {
         if(lastmove)
-            if(swagger){
+            if(swagger) {
                 sprite = animate.get(54);
                 currentList = mask.get(54);
-
+                
             }
-            else{
+            else {
                 sprite = animate.get(55);
                 currentList = mask.get(55);
-
+                
             }
-        else if(swagger){
+        else if(swagger) {
             sprite = animate.get(56);
             currentList = mask.get(56);
-
+            
         }
-        else{
+        else {
             sprite = animate.get(57);
             currentList = mask.get(57);
-
+            
         }
     }
     
     public void jumpSwag(int fastswagger) {
-        if(lastmove){
+        if(lastmove) {
             currentList = mask.get(fastswagger + 32);
-
+            
             sprite = animate.get(fastswagger + 32);
         }
-        else{
+        else {
             sprite = animate.get(fastswagger + 40);
             currentList = mask.get(fastswagger + 40);
-
+            
         }
         if(fastswagger == 7) {
-
+            
             game.jumpfin = true;
             game.fliptimer = 0;
         }
@@ -219,76 +223,112 @@ public class Fighter extends Sprite {
         if(right)
             sprite = animate.get(fastswagger + 16);
         
-        if(left){
+        if(left) {
             sprite = animate.get(fastswagger + 24);
             currentList = mask.get(fastswagger + 24);
-
+            
         }
     }
     
     public void fallSwag() {
-        if(lastmove){
+        if(lastmove) {
             sprite = animate.get(48);
             currentList = mask.get(48);
-
+            
         }
-        else{
+        else {
             sprite = animate.get(49);
             currentList = mask.get(49);
         }
     }
     
-    public void updateMask(){
-        for(int j = 0; j < mask.size();j++){
-   for(int i = 0; i < mask.get(j).size(); i++) {
-            
-            mask.get(j).get(i).setBounds((int) ArrayListOfArrayListOfPoints.get(j).get(i).getX() + x, (int) ArrayListOfArrayListOfPoints.get(j).get(i).getY() + y, 1, 1);
-           // g2.setColor(Color.GREEN);
-            
-             //g2.draw(mask.get(i));
+    public void updateMask() {
+        for(int j = 0; j < mask.size(); j++) {
+            for(int i = 0; i < mask.get(j).size(); i++) {
+                for(Block block : Ground.all) {
+                    if(!(mask.get(j).get(i).getX() + x > block.getX() && mask.get(j).get(i).getX() + x < block.getMaxX()
+                            && mask.get(j).get(i).getY() + y > block.getY()
+                            && mask.get(j).get(i).getY() + y < block.getMaxY()))
+                        
+                        mask.get(j).get(i).setBounds((int) ArrayListOfArrayListOfPoints.get(j).get(i).getX() + x,
+                                (int) ArrayListOfArrayListOfPoints.get(j).get(i).getY() + y, 1, 1);
+                }
+                // g2.setColor(Color.GREEN);
+                
+                // g2.draw(mask.get(i));
+            }
         }
-        }
+        
     }
     
     public boolean isStand() {
-      
         return collsionCheck.shouldPlayerFall_QuestionMark(currentList);
-        }
-    public void drawMask(Graphics g){
-        Graphics2D g2= (Graphics2D) g;
-        for(Rectangle rekt: currentList){
+    }
+    
+    public void drawMask(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        int x = 0;
+        for(Rectangle rekt : currentList) {
+            g2.setColor(new Color(20, 20, 20));
             g2.draw(rekt);
         }
         
     }
-    public void maskCreator(BufferedImage img){
-      ArrayList<Rectangle> temporaryALRectangle = new ArrayList<Rectangle>();
-      ArrayList<Point> temporaryALPoint = new ArrayList<Point>();
-      
+    
+    public void maskCreator(BufferedImage img) {
+        ArrayList<Rectangle> temporaryALRectangle = new ArrayList<Rectangle>();
+        ArrayList<Point> temporaryALPoint = new ArrayList<Point>();
+        
         for(int i = 0; i < img.getWidth(); i++)
             for(int j = 0; j < img.getHeight(); j++) {
                 if(img.getRGB(i, j) != 0) {
                     
-                    if((i+1<100 && img.getRGB(i+1, j) == 0 )|| (i-1>=0&& img.getRGB(i-1, j) == 0)
-                            
-                            
-                            || ((i+1<100&&j+1<100)&&img.getRGB(i+1, j+1) == 0)
-                            
-                            || ((i-1>=0&&j-1>=0)&&img.getRGB(i-1, j-1) == 0)
-                            
-                            
-                            ){
+                     if((i+1<100 && img.getRGB(i+1, j) == 0 )|| (i-1>=0&&
+                     img.getRGB(i-1, j) == 0)
                     
+                    
+                     || ((i+1<100&&j+1<100)&&img.getRGB(i+1, j+1) == 0)
+                    
+                     || ((i-1>=0&&j-1>=0)&&img.getRGB(i-1, j-1) == 0)
+                    
+                     || (i==99||i==0||j==0||j==99)
+                    
+                     ){
+                    
+                        // if(j>90){
                     temporaryALRectangle.add(new Rectangle(i, j, 1, 1));
                     
                     temporaryALPoint.add(new Point(i, j));
-                    }
+                     //    }
                 }
-                
             }
         
+         }
+       
         mask.add(temporaryALRectangle);
         ArrayListOfArrayListOfPoints.add(temporaryALPoint);
+    }
+    
+    @Override
+    public boolean awwDidYouHitAWallToYourRight() {
+        
+        return !collsionCheck.shouldPlayerKeepGoingRight_QuestionMark(currentList);
+    }
+    
+    @Override
+    public boolean areYouInsideABlock_QuestionMark() {
+        return collsionCheck.areYouInsideABlock_QuestionMark(currentList);
+    }
+
+    @Override
+    public boolean awwDidYouHitAWallWithHead() {
+        return !collsionCheck.shouldPlayerKeepGoingUp_QuestionMark(currentList);
+    }
+
+    @Override
+    public boolean awwDidYouHitAWallToYourLeft() {
+        return !collsionCheck.shouldPlayerKeepGoingLeft_QuestionMark(currentList);
+
     }
     
 }

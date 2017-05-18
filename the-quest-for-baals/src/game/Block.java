@@ -12,45 +12,45 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.imageio.ImageIO;
 
 public class Block {
-	
-	//private int type;
+    
+    // private int type;
     static AtomicInteger nextId = new AtomicInteger();
     private int id;
-	
-	private ArrayList<BufferedImage> animate = new ArrayList<BufferedImage>();
-	BufferedImage display;
-	
-	public void load()
-	{
-		try {
-			/** 0 wood */
-			animate.add(ImageIO.read(new File("/Users/64009455/Desktop/stone3.png")));
-			
-			/** 1 stone */
-			animate.add(ImageIO.read(new File("/Users/64009455/Desktop/stone2.png")));
-			
-			/** 2 grass */
-			animate.add(ImageIO.read(new File("/Users/64009455/Desktop/stone1.png")));
-
-			/** 3 background wood 
-			*animate.add(ImageIO.read(new File("img/imgres.png")));
-			*
-			* 4 background stone 
-			*animate.add(ImageIO.read(new File("img/imgres.png")));
-			*
-			* 5 background grass 
-			*animate.add(ImageIO.read(new File("img/imgres.png")));
-			*/
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-	}
-	
-	int x = 0;
+    
+    private ArrayList<BufferedImage> animate = new ArrayList<BufferedImage>();
+    BufferedImage display;
+    
+    public void load() {
+        try {
+            /** 0 wood */
+            animate.add(ImageIO.read(new File("img/stone1.png")));
+            
+            /** 1 stone */
+            animate.add(ImageIO.read(new File("img/stone2.png")));
+            
+            /** 2 grass */
+            animate.add(ImageIO.read(new File("img/stone3.png")));
+            
+            /**
+             * 3 background wood animate.add(ImageIO.read(new
+             * File("img/imgres.png")));
+             *
+             * 4 background stone animate.add(ImageIO.read(new
+             * File("img/imgres.png")));
+             *
+             * 5 background grass animate.add(ImageIO.read(new
+             * File("img/imgres.png")));
+             */
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    int x = 0;
     int y = 0;
     int width;
- 
-     
+    
     public Block(int i, int x, int y) {
         Random rand = new Random();
         id = nextId.incrementAndGet();
@@ -59,47 +59,44 @@ public class Block {
         this.x = x;
         this.y = y;
         
-        width = display.getWidth();        
+        width = display.getWidth();
         load();
-         
+        
     }
-     
+    
     public String toString() {
         return " id = " + id;
     }
     
-    public int getID(){
+    public int getID() {
         return id;
     }
-     
+    
     public void draw(Graphics g) throws IOException {
- 
-        g.drawString(""+toString(), x, y);
-       g.drawImage(display, x, y, null);
-        //g.fillRect(x, y, width, width);
+        
+        g.drawString("" + toString(), x, y);
+        g.drawImage(display, x, y, null);
+        // g.fillRect(x, y, width, width);
     }
-     
+    
     public int getX() {
         return x;
     }
-     
+    
     public int getY() {
         return y;
     }
-     
-    public void moveX(){
+    
+    public void moveX() {
         x--;
     }
-     
+    
     public int getMaxX() {
         return x + width;
     }
-     
+    
     public int getMaxY() {
         return y + width;
     }
-   
-	
-	
-	
+    
 }

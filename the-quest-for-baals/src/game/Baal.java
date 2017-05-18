@@ -41,11 +41,11 @@ public class Baal {
     public void checkHit(ArrayList<Baal> b) {
         for(Baal ball : b) {
             for(Baal ball2 : b) {
-                if(ball.getID()!=ball2.getID()){
-                if(ball.calculateDistance(ball2)<=15&&ball.calculateDistance(ball2)>0){
-                    this.baal2BaalHit();
-                    ball2.baal2BaalHit();
-                }
+                if(ball.getID() != ball2.getID()) {
+                    if(ball.calculateDistance(ball2) <= 15 && ball.calculateDistance(ball2) > 0) {
+                        this.baal2BaalHit();
+                        ball2.baal2BaalHit();
+                    }
                 }
             }
         }
@@ -91,7 +91,7 @@ public class Baal {
         return Math.sqrt(Math.pow((this.getX() - other.getX()), 2) + Math.pow((this.getY() - other.getY()), 2));
     }
     
-    public int getID(){
+    public int getID() {
         return id;
     }
 }
