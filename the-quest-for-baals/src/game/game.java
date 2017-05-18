@@ -188,6 +188,8 @@ public class game extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	private void enemyActions()
-	{}
+	{
+		
+	}
 	
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Ground {
 	
 	static ArrayList<Block> all = new ArrayList<Block>();
+	static ArrayList<Object> non = new ArrayList<Object>();
 	
 	public Ground()
 	{}
