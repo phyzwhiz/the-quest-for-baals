@@ -46,10 +46,10 @@ public abstract class Sprite {
     }
     
     public void right() {
-            if(halfspeed)
-                x += speed / 4;
-            else
-                x += speed;
+        if(halfspeed)
+            x += speed / 4;
+        else
+            x += speed;
         
     }
     
@@ -80,10 +80,8 @@ public abstract class Sprite {
     public abstract boolean awwDidYouHitAWallToYourRight();
     
     public abstract boolean awwDidYouHitAWallWithHead();
-
+    
     public abstract boolean awwDidYouHitAWallToYourLeft();
-
-
     
     public abstract boolean areYouInsideABlock_QuestionMark();
     
