@@ -209,13 +209,13 @@ public class Mage extends Sprite {
         // TODO Auto-generated method stub
         return false;
     }
-
+    
     @Override
     public boolean awwDidYouHitAWallWithHead() {
         // TODO Auto-generated method stub
         return false;
     }
-
+    
     @Override
     public boolean awwDidYouHitAWallToYourLeft() {
         // TODO Auto-generated method stub

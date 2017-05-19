@@ -117,14 +117,14 @@ public class Fighter extends Sprite {
             /** 56-57 crouch down swagger right/left */
             animate.add(ImageIO.read(new File("img/red.png")));
             animate.add(ImageIO.read(new File("img/reddown.png")));
-
-            for(BufferedImage img : animate){
+            
+            for(BufferedImage img : animate) {
                 maskCreator(img);
             }
             
-//            for(int i = 0; i<animate.size();i++) {
-//                maskCreator(animate.get(animate.size()-1));
-//            }
+            // for(int i = 0; i<animate.size();i++) {
+            // maskCreator(animate.get(animate.size()-1));
+            // }
             
         }
         catch(IOException e) {
@@ -283,28 +283,26 @@ public class Fighter extends Sprite {
             for(int j = 0; j < img.getHeight(); j++) {
                 if(img.getRGB(i, j) != 0) {
                     
-                     if((i+1<100 && img.getRGB(i+1, j) == 0 )|| (i-1>=0&&
-                     img.getRGB(i-1, j) == 0)
+                    if((i + 1 < 100 && img.getRGB(i + 1, j) == 0) || (i - 1 >= 0 && img.getRGB(i - 1, j) == 0)
+                            
+                            || ((i + 1 < 100 && j + 1 < 100) && img.getRGB(i + 1, j + 1) == 0)
+                            
+                            || ((i - 1 >= 0 && j - 1 >= 0) && img.getRGB(i - 1, j - 1) == 0)
+                            
+                            || (i == 99 || i == 0 || j == 0 || j == 99)
                     
-                    
-                     || ((i+1<100&&j+1<100)&&img.getRGB(i+1, j+1) == 0)
-                    
-                     || ((i-1>=0&&j-1>=0)&&img.getRGB(i-1, j-1) == 0)
-                    
-                     || (i==99||i==0||j==0||j==99)
-                    
-                     ){
-                    
+                    ) {
+                        
                         // if(j>90){
-                    temporaryALRectangle.add(new Rectangle(i, j, 1, 1));
-                    
-                    temporaryALPoint.add(new Point(i, j));
-                     //    }
+                        temporaryALRectangle.add(new Rectangle(i, j, 1, 1));
+                        
+                        temporaryALPoint.add(new Point(i, j));
+                        // }
+                    }
                 }
+                
             }
         
-         }
-       
         mask.add(temporaryALRectangle);
         ArrayListOfArrayListOfPoints.add(temporaryALPoint);
     }
@@ -319,16 +317,16 @@ public class Fighter extends Sprite {
     public boolean areYouInsideABlock_QuestionMark() {
         return collsionCheck.areYouInsideABlock_QuestionMark(currentList);
     }
-
+    
     @Override
     public boolean awwDidYouHitAWallWithHead() {
         return !collsionCheck.shouldPlayerKeepGoingUp_QuestionMark(currentList);
     }
-
+    
     @Override
     public boolean awwDidYouHitAWallToYourLeft() {
         return !collsionCheck.shouldPlayerKeepGoingLeft_QuestionMark(currentList);
-
+        
     }
     
 }

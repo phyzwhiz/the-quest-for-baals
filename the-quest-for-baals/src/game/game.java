@@ -5,15 +5,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class game extends JPanel implements ActionListener, KeyListener {
+public class game extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
     
     public static void main(String[] args) throws IOException {
+        stone = ImageIO.read(new File("img/stone1.png"));
+        
         @SuppressWarnings("unused")
         game run = new game("Game");
     }
@@ -36,12 +44,19 @@ public class game extends JPanel implements ActionListener, KeyListener {
     static int fliptimer;
     Level level;
     int counter1 = 0;
+    static int mouseX = 0;
+    static int mouseY = 0;
+    static BufferedImage stone;
+    String Blocks = "";
     
     public game(String s) throws IOException {
         JFrame frame = new JFrame(s);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         game bp = new game();
         frame.addKeyListener(this);
+        frame.addMouseListener(this);
+        frame.addMouseMotionListener(this);
+        
         frame.add(bp);
         frame.setSize(1366, 738);
         frame.setVisible(true);
@@ -73,8 +88,14 @@ public class game extends JPanel implements ActionListener, KeyListener {
                 break;
             
             case KeyEvent.VK_RIGHT:
-               
+                
                 right = true;
+                
+                break;
+            
+            case KeyEvent.VK_Z:
+                
+                Ground.all.remove(Ground.all.size() - 1);
                 
                 break;
         }
@@ -103,6 +124,17 @@ public class game extends JPanel implements ActionListener, KeyListener {
             case KeyEvent.VK_RIGHT:
                 right = false;
                 break;
+            
+            case KeyEvent.VK_ENTER:
+                Ground.add(new Block(0, mouseX, mouseY - 25));
+                Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
+                
+                break;
+            
+            case KeyEvent.VK_G:
+                System.out.println(Blocks);
+                
+                break;
         }
     }
     
@@ -114,29 +146,30 @@ public class game extends JPanel implements ActionListener, KeyListener {
     @SuppressWarnings("static-access")
     public void paintComponent(Graphics g) {
         
-        if(!player.awwDidYouHitAWallToYourRight()) 
-            right=false;
+        g.drawImage(stone, mouseX, mouseY - 25, null);
         
-        if(!player.awwDidYouHitAWallToYourLeft()) 
-            left=false;
+        if(!player.awwDidYouHitAWallToYourRight())
+            right = false;
+        
+        if(!player.awwDidYouHitAWallToYourLeft())
+            left = false;
         
         if(!player.awwDidYouHitAWallWithHead()) {
             player.fall();
             jumpcount = 0;
         }
         
-        
-        
         Ground.draw(g);
-//         if(player.areYouInsideABlock_QuestionMark()){
-//         Sprite.x-=2;
-//         player.updateMask();
-//         if(!player.isStand())
-//         player.fall();
-//         }
-//        
+        // if(player.areYouInsideABlock_QuestionMark()){
+        // Sprite.x-=2;
+        // player.updateMask();
+        // if(!player.isStand())
+        // player.fall();
+        // }
+        //
         player.updateMask();
-        //player.drawMask(g);
+        // player.drawMask(g);
+        
         if(player.y == 900) {
             player.y = 0;
             player.x = 300;
@@ -210,5 +243,48 @@ public class game extends JPanel implements ActionListener, KeyListener {
     }
     
     private void enemyActions() {}
+    
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Ground.add(new Block(0, mouseX, mouseY - 25));
+        Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
+        
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+    
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+    
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
+    }
+    
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        
+    }
+    
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        
+        int x = ((e.getX() + 99) / 100) * 100;
+        int y = ((e.getY() + 99) / 100) * 100;
+        
+        mouseX = x - 50;
+        mouseY = y - 50;
+        
+    }
     
 }
