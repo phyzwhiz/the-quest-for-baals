@@ -17,7 +17,7 @@ public class Mage extends Sprite {
     int feet;
     
     public Mage(int startx, int starty) {
-        super(startx, starty);
+        super(startx, starty, false);
         load();
     }
     

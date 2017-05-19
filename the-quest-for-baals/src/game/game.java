@@ -27,7 +27,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     }
     
     private static final long serialVersionUID = 1L;
-    static int delay = 200;
+    static int shift = 0;
+    static int delay = 20;
     protected Timer timer;
     Sprite player;
     static int xN = 0;
@@ -79,7 +80,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         timer = new Timer(delay, this);
         timer.start();
 
-        player = new Fighter(1366/2, 0, true);
+        player = new Fighter(1366/2, 0, false);
 
         
         
@@ -145,7 +146,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_ENTER:
                 Ground.add(new Block(0, mouseX, mouseY - 25));
-                Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
+                Blocks += " Ground.add(new Block(0," + mouseX + shift + "," + mouseY + "-25));";
                 
                 break;
             
@@ -163,6 +164,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @SuppressWarnings("static-access")
     public void paintComponent(Graphics g) {
+        
+        if(right)
+            shift+=10;
+        if(left)
+            shift-=10;
+        
         
         g.drawImage(stone, mouseX, mouseY - 25, null);
         

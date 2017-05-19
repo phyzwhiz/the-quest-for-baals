@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public abstract class Sprite {
     
-    static int speed = 100;
+    static int speed = 10;
     static int x;
     static int y;
     private boolean halfspeed = false;

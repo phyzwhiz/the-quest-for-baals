@@ -113,10 +113,12 @@ public class Block {
 //    		else{}	
 //    			
 //    	else
-    	if (ha)
+    	if (ha){
     		x+=Sprite.speed / 4;
-    	else 
+    	}
+    	else {
     		x+=Sprite.speed;
+    	}
     }
     
 }
