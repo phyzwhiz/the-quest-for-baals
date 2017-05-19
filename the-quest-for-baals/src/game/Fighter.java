@@ -24,8 +24,8 @@ public class Fighter extends Sprite {
     
     static Collide collsionCheck = new Collide();
     
-    public Fighter(int startx, int starty) {
-        super(startx, starty);
+    public Fighter(int startx, int starty, boolean gay) {
+        super(startx, starty, gay);
         load();
     }
     

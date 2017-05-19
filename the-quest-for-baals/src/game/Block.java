@@ -14,11 +14,11 @@ import javax.imageio.ImageIO;
 public class Block {
     
     // private int type;
-    static AtomicInteger nextId = new AtomicInteger();
-    private int id;
     
     private ArrayList<BufferedImage> animate = new ArrayList<BufferedImage>();
     BufferedImage display;
+	static int lastspeed = 0;
+
     
     public void load() {
         try {
@@ -53,7 +53,6 @@ public class Block {
     
     public Block(int i, int x, int y) {
         Random rand = new Random();
-        id = nextId.incrementAndGet();
         load();
         display = animate.get(rand.nextInt(animate.size()));
         this.x = x;
@@ -64,17 +63,8 @@ public class Block {
         
     }
     
-    public String toString() {
-        return " id = " + id;
-    }
-    
-    public int getID() {
-        return id;
-    }
-    
     public void draw(Graphics g) throws IOException {
-        
-        g.drawString("" + toString(), x, y);
+    	//g.fillRect(x, y, 10, 10);
         g.drawImage(display, x, y, null);
         // g.fillRect(x, y, width, width);
     }
@@ -97,6 +87,36 @@ public class Block {
     
     public int getMaxY() {
         return y + width;
+    }
+    public void right(boolean ha, boolean level){
+//    	lastspeed += Sprite.speed;
+//    	if (level)
+//    		if (lastspeed%100 == 0)
+//    		{
+//    			lastspeed = 0;
+//    			x-= 100;
+//    		}else{}
+//    	else
+    	if (ha)
+    		x-=Sprite.speed / 4;
+    	else 
+    		x-=Sprite.speed;
+    }
+    public void left(boolean ha, boolean level){
+//    	lastspeed += Sprite.speed;
+//    	if (level)
+//    		if (lastspeed%100 == 0)
+//    		{
+//    			lastspeed = 0;
+//    			x+= 100;
+//    		}
+//    		else{}	
+//    			
+//    	else
+    	if (ha)
+    		x+=Sprite.speed / 4;
+    	else 
+    		x+=Sprite.speed;
     }
     
 }

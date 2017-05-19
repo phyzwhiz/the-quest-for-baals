@@ -27,7 +27,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     }
     
     private static final long serialVersionUID = 1L;
-    private static int delay = 30;
+    static int delay = 200;
     protected Timer timer;
     Sprite player;
     static int xN = 0;
@@ -52,22 +52,38 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     public game(String s) throws IOException {
         JFrame frame = new JFrame(s);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //game start screen
+        //determines player class and levelbuilderness
+        
+        
         game bp = new game();
+        frame.add(bp);
         frame.addKeyListener(this);
         frame.addMouseListener(this);
         frame.addMouseMotionListener(this);
-        
-        frame.add(bp);
         frame.setSize(1366, 738);
         frame.setVisible(true);
+        
+        
+       
+       
+
+
     }
     
     public game() {
-        
+       
+
         level = new Level(1);
         timer = new Timer(delay, this);
         timer.start();
-        player = new Fighter(300, 300);
+
+        player = new Fighter(1366/2, 0, true);
+
+        
+        
+
         
     }
     
@@ -95,7 +111,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_Z:
                 
-                Ground.all.remove(Ground.all.size() - 1);
+                if(Ground.all.size() > 0){
+                	Ground.all.remove(Ground.all.size() - 1);
+                }
                 
                 break;
         }
@@ -172,7 +190,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         
         if(player.y == 900) {
             player.y = 0;
-            player.x = 300;
+            player.x = getWidth() / 2;
             
         }
         

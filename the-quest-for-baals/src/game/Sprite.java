@@ -4,14 +4,18 @@ import java.awt.Graphics;
 
 public abstract class Sprite {
     
-    private int speed = 10;
+    static int speed = 100;
     static int x;
     static int y;
     private boolean halfspeed = false;
+    boolean level;
     
-    public Sprite(int startx, int starty) {
+    public Sprite(int startx, int starty, boolean level) {
         x = startx;
         y = starty;
+       //this.level = level;
+//       if (level)
+//    	   game.delay = 1000;
     }
     
     public int getY() {
@@ -39,17 +43,11 @@ public abstract class Sprite {
     }
     
     public void left() {
-        if(halfspeed)
-            x -= speed / 4;
-        else
-            x -= speed;
+        	Ground.moveLeft(halfspeed, level);
     }
     
     public void right() {
-        if(halfspeed)
-            x += speed / 4;
-        else
-            x += speed;
+    	Ground.moveRight(halfspeed, level);
         
     }
     
