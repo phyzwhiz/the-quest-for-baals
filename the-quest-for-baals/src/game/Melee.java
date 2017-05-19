@@ -1,5 +1,10 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +20,12 @@ public class Melee extends Enemy {
 	private ArrayList<BufferedImage> animate = new ArrayList<BufferedImage>();
 	int attack;
 	boolean facing;
-	
+	BufferedImage display;
+	private ArrayList<Rectangle> currentList = new ArrayList<Rectangle>();
+    private ArrayList<ArrayList<Point>> ArrayListOfArrayListOfPoints = new ArrayList<ArrayList<Point>>();
+    private ArrayList<ArrayList<Rectangle>> mask = new ArrayList<ArrayList<Rectangle>>();
+	private Collide collsionCheck;
+    
 	public Melee(int startx, int starty)
 	{
 		super();
@@ -82,7 +92,108 @@ public class Melee extends Enemy {
 		if (facing)
 			x += 15;
 		else
-			x -= 15;
-			
+			x -= 15;	
 	}
+	
+	public void run(int fastswagger)
+	{
+		if (facing)
+			display = animate.get(fastswagger);
+		else 
+			display = animate.get(fastswagger+8);
+	}
+	
+	public void fall() {
+            y += 25;
+    }
+	
+	public void updateMask() {
+        for(int j = 0; j < mask.size(); j++) {
+            for(int i = 0; i < mask.get(j).size(); i++) {
+                for(Block block : Ground.all) {
+                    if(!(mask.get(j).get(i).getX() + x > block.getX() && mask.get(j).get(i).getX() + x < block.getMaxX()
+                            && mask.get(j).get(i).getY() + y > block.getY()
+                            && mask.get(j).get(i).getY() + y < block.getMaxY()))
+                        
+                        mask.get(j).get(i).setBounds((int) ArrayListOfArrayListOfPoints.get(j).get(i).getX() + x,
+                                (int) ArrayListOfArrayListOfPoints.get(j).get(i).getY() + y, 1, 1);
+                }
+                // g2.setColor(Color.GREEN);
+                
+                // g2.draw(mask.get(i));
+            }
+        }
+        
+    }
+    
+    public boolean isStand() {
+        return collsionCheck.shouldPlayerFall_QuestionMark(currentList);
+    }
+    
+    public void drawMask(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        int x = 0;
+        for(Rectangle rekt : currentList) {
+            g2.setColor(new Color(20, 20, 20));
+            g2.draw(rekt);
+        }
+        
+    }
+    
+    public void maskCreator(BufferedImage img) {
+        ArrayList<Rectangle> temporaryALRectangle = new ArrayList<Rectangle>();
+        ArrayList<Point> temporaryALPoint = new ArrayList<Point>();
+        
+        for(int i = 0; i < img.getWidth(); i++)
+            for(int j = 0; j < img.getHeight(); j++) {
+                if(img.getRGB(i, j) != 0) {
+                    
+                     if((i+1<100 && img.getRGB(i+1, j) == 0 )|| (i-1>=0&&
+                     img.getRGB(i-1, j) == 0)
+                    
+                    
+                     || ((i+1<100&&j+1<100)&&img.getRGB(i+1, j+1) == 0)
+                    
+                     || ((i-1>=0&&j-1>=0)&&img.getRGB(i-1, j-1) == 0)
+                    
+                     || (i==99||i==0||j==0||j==99)
+                    
+                     ){
+                    
+                        // if(j>90){
+                    temporaryALRectangle.add(new Rectangle(i, j, 1, 1));
+                    
+                    temporaryALPoint.add(new Point(i, j));
+                     //    }
+                }
+            }
+        
+         }
+       
+        mask.add(temporaryALRectangle);
+        ArrayListOfArrayListOfPoints.add(temporaryALPoint);
+    }
+    
+    @Override
+    public boolean awwDidYouHitAWallToYourRight() {
+        
+        return !collsionCheck.shouldPlayerKeepGoingRight_QuestionMark(currentList);
+    }
+    
+    @Override
+    public boolean areYouInsideABlock_QuestionMark() {
+        return collsionCheck.areYouInsideABlock_QuestionMark(currentList);
+    }
+
+    @Override
+    public boolean awwDidYouHitAWallWithHead() {
+        return !collsionCheck.shouldPlayerKeepGoingUp_QuestionMark(currentList);
+    }
+
+    @Override
+    public boolean awwDidYouHitAWallToYourLeft() {
+        return !collsionCheck.shouldPlayerKeepGoingLeft_QuestionMark(currentList);
+
+    }
+	
 }

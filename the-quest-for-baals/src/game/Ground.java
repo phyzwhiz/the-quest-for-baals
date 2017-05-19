@@ -5,33 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Ground {
-<<<<<<< HEAD
-	
-	static ArrayList<Block> all = new ArrayList<Block>();
-	static ArrayList<Object> non = new ArrayList<Object>();
-	
-	public Ground()
-	{}
-	
-	public static void add(Block block)
-	{	all.add(block); }
-	
-	public static void clear()
-	{	all.clear(); }
-	
-	public static void draw(Graphics g)
-	{
-		for(Block block : all)
-			try {
-				block.draw(g);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-	}
-	
-=======
+
     
     static ArrayList<Block> all = new ArrayList<Block>();
+	static ArrayList<Object> non = new ArrayList<Object>();
+	static ArrayList<Enemy> enemy = new ArrayList<Enemy>();
+
     
     public Ground() {}
     
@@ -57,5 +36,4 @@ public class Ground {
         return all;
     }
     
->>>>>>> master
 }

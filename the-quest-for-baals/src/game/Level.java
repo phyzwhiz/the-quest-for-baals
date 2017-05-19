@@ -22,6 +22,7 @@ public class Level {
         Ground.add(new Block(0, 1000, 600));
         Ground.add(new Block(0, 900, 400));
         Ground.add(new Block(0, 500, 200));
+        Ground.enemy.add(new Melee(100, 100));
         
     }
     
