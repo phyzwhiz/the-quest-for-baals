@@ -166,9 +166,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     public void paintComponent(Graphics g) {
         
         if(right)
-            shift+=10;
+            shift+=100;
         if(left)
-            shift-=10;
+            shift-=100;
         
         
         g.drawImage(stone, mouseX, mouseY - 25, null);
