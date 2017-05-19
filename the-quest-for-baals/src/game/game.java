@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,6 +12,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -33,6 +35,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     Sprite player;
     static int xN = 0;
     static int yN = 0;
+    static boolean draw = false;
+
     static boolean right = false;
     static boolean left = false;
     static boolean crouch = false;
@@ -49,6 +53,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static int mouseY = 0;
     static BufferedImage stone;
     String Blocks = "";
+    static Point initialPosition = new Point();
     
     public game(String s) throws IOException {
         JFrame frame = new JFrame(s);
@@ -91,6 +96,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     @Override
     public synchronized void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
+            
+            case KeyEvent.VK_L:
+                draw ^= true;
+                break;
+            
+            
             case KeyEvent.VK_DOWN:
                 crouch = true;
                 jump = false;
@@ -114,7 +125,14 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 
                 if(Ground.all.size() > 0){
                 	Ground.all.remove(Ground.all.size() - 1);
+                	ArrayList<Integer> indexes = new ArrayList<Integer>();
+                	for(int i = 0; i<Blocks.length();i++){
+                	    if(Blocks.charAt(i)==' ')
+                	        indexes.add(i);
+                	}
+                	Blocks = Blocks.substring(0, indexes.get(indexes.size()-2));
                 }
+                
                 
                 break;
         }
@@ -146,7 +164,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_ENTER:
                 Ground.add(new Block(0, mouseX, mouseY - 25));
-                Blocks += " Ground.add(new Block(0," + mouseX + shift + "," + mouseY + "-25));";
+                Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
+               
+                
                 
                 break;
             
@@ -164,11 +184,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @SuppressWarnings("static-access")
     public void paintComponent(Graphics g) {
-        
-        if(right)
-            shift+=100;
-        if(left)
-            shift-=100;
+       
+      
+     if(right)
+         shift+=10;
+         if(left)
+             shift-=10;
         
         
         g.drawImage(stone, mouseX, mouseY - 25, null);
@@ -272,7 +293,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     @Override
     public void mouseClicked(MouseEvent e) {
         Ground.add(new Block(0, mouseX, mouseY - 25));
-        Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
+        int num = mouseX + shift;
+        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
         
     }
     

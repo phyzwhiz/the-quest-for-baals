@@ -97,10 +97,15 @@ public class Block {
 //    			x-= 100;
 //    		}else{}
 //    	else
-    	if (ha)
+    	if (ha){
     		x-=Sprite.speed / 4;
-    	else 
+            game.initialPosition.setLocation(game.initialPosition.getX()-Sprite.speed/4, game.initialPosition.getY());
+
+    	}
+    	else {
     		x-=Sprite.speed;
+    		game.initialPosition.setLocation(game.initialPosition.getX()-Sprite.speed, game.initialPosition.getY());
+    	}
     }
     public void left(boolean ha, boolean level){
 //    	lastspeed += Sprite.speed;
@@ -115,9 +120,13 @@ public class Block {
 //    	else
     	if (ha){
     		x+=Sprite.speed / 4;
+            game.initialPosition.setLocation(game.initialPosition.getX()-Sprite.speed/4, game.initialPosition.getY());
+
     	}
     	else {
     		x+=Sprite.speed;
+            game.initialPosition.setLocation(game.initialPosition.getX()-Sprite.speed, game.initialPosition.getY());
+
     	}
     }
     
