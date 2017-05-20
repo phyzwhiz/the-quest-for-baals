@@ -107,6 +107,7 @@ public class Block {
     		game.initialPosition.setLocation(game.initialPosition.getX()-Sprite.speed, game.initialPosition.getY());
     	}
     }
+  
     public void left(boolean ha, boolean level){
 //    	lastspeed += Sprite.speed;
 //    	if (level)

@@ -85,7 +85,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         timer = new Timer(delay, this);
         timer.start();
 
-        player = new Fighter(1366/2, 0, false);
+        player = new Fighter(1366/2, 0, true);
 
         
         
@@ -99,6 +99,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_L:
                 draw ^= true;
+               
                 break;
             
             
@@ -122,7 +123,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 break;
             
             case KeyEvent.VK_Z:
-                
+                if(Sprite.level){
                 if(Ground.all.size() > 0){
                 	Ground.all.remove(Ground.all.size() - 1);
                 	ArrayList<Integer> indexes = new ArrayList<Integer>();
@@ -131,6 +132,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 	        indexes.add(i);
                 	}
                 	Blocks = Blocks.substring(0, indexes.get(indexes.size()-2));
+                }
                 }
                 
                 
@@ -149,6 +151,25 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             case KeyEvent.VK_DOWN:
                 crouch = false;
                 break;
+            case KeyEvent.VK_T:
+              Sprite.level ^= true;
+              if( Sprite.speed==100){
+                  Sprite.speed=10;
+                  for(Block b : Ground.all){
+                      while(b.x%50!=0)
+                          b.x--;
+                     
+                  }
+              }
+              else{
+                  Sprite.speed = 100;
+                  for(Block b : Ground.all){
+                      while(b.x%50!=0)
+                          b.x--;
+                      
+                  }
+              }
+              break;
             
             case KeyEvent.VK_UP:
                 jump = false;
@@ -163,10 +184,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 break;
             
             case KeyEvent.VK_ENTER:
+                if(Sprite.level){
                 Ground.add(new Block(0, mouseX, mouseY - 25));
                 Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
                
-                
+                }
                 
                 break;
             
@@ -184,16 +206,20 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @SuppressWarnings("static-access")
     public void paintComponent(Graphics g) {
+        
+      
+        
        
+        System.out.println(shift);
       
      if(right)
-         shift+=10;
+         shift+=Sprite.speed;
          if(left)
-             shift-=10;
+             shift-=Sprite.speed;
         
         
-        g.drawImage(stone, mouseX, mouseY - 25, null);
         
+         if(!Sprite.level){
         if(!player.awwDidYouHitAWallToYourRight())
             right = false;
         
@@ -204,6 +230,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             player.fall();
             jumpcount = 0;
         }
+         }
+
+     
+             
+             
+         
+        if(Sprite.level)
+            g.drawImage(stone, mouseX, mouseY - 25, null);
+
         
         Ground.draw(g);
         // if(player.areYouInsideABlock_QuestionMark()){
@@ -292,10 +327,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(Sprite.level){
         Ground.add(new Block(0, mouseX, mouseY - 25));
         int num = mouseX + shift;
         Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
-        
+        }
     }
     
     @Override
@@ -328,6 +364,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         
         int x = ((e.getX() + 99) / 100) * 100;
         int y = ((e.getY() + 99) / 100) * 100;
+        
         
         mouseX = x - 50;
         mouseY = y - 50;

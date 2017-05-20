@@ -149,7 +149,9 @@ public class Fighter extends Sprite {
     }
     
     public void draw(Graphics g) {
+        
         feet = Sprite.y + sprite.getHeight();
+        if(!Sprite.level)
         g.drawImage(sprite, Sprite.x, Sprite.y, null);
     }
     

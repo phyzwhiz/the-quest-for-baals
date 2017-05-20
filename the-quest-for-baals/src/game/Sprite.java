@@ -8,12 +8,14 @@ public abstract class Sprite {
     static int x;
     static int y;
     private boolean halfspeed = false;
-    boolean level;
+    static boolean level;
     
     public Sprite(int startx, int starty, boolean level) {
         x = startx;
         y = starty;
-       //this.level = level;
+       this.level = level;
+       if(level)
+           speed=100;
 //       if (level)
 //    	   game.delay = 1000;
     }
@@ -50,6 +52,8 @@ public abstract class Sprite {
     	Ground.moveRight(halfspeed, level);
         
     }
+    
+    
     
     public void setY(int u) {
         y = u;
