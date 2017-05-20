@@ -155,16 +155,17 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
               Sprite.level ^= true;
               if( Sprite.speed==100){
                   Sprite.speed=10;
-                  for(Block b : Ground.all){
-                      while(b.x%50!=0)
-                          b.x--;
+                  while(Ground.all.get(0).getX()%mouseX!=0)
+                      for(Block b : Ground.all){
+                              b.x--;
                      
                   }
               }
               else{
                   Sprite.speed = 100;
+                  
+                  while(Ground.all.get(0).getX()%mouseX!=0)
                   for(Block b : Ground.all){
-                      while(b.x%50!=0)
                           b.x--;
                       
                   }
