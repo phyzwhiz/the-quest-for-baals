@@ -29,7 +29,19 @@ public class Block {
             animate.add(ImageIO.read(new File("img/stone2.png")));
             
             /** 2 grass */
-            animate.add(ImageIO.read(new File("img/stone3.png")));
+            animate.add(ImageIO.read(new File("img/stone1.png")));
+            
+            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/lavaBlock2.png")));
+
+            
+            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/lavaBlock3.png")));
+
+            
+            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/lavaBlock1.png")));
+            
+            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/spikes2.png")));
+
+
             
             /**
              * 3 background wood animate.add(ImageIO.read(new
@@ -107,7 +119,7 @@ public class Block {
     		game.initialPosition.setLocation(game.initialPosition.getX()-Sprite.speed, game.initialPosition.getY());
     	}
     }
-  
+     
     public void left(boolean ha, boolean level){
 //    	lastspeed += Sprite.speed;
 //    	if (level)

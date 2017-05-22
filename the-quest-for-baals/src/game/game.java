@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     public static void main(String[] args) throws IOException {
         stone = ImageIO.read(new File("img/stone1.png"));
+        delete = ImageIO.read(new File("/Users/64009455/Documents/delete.png"));
+
         
         @SuppressWarnings("unused")
         game run = new game("Game");
@@ -36,7 +39,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static int xN = 0;
     static int yN = 0;
     static boolean draw = false;
-
+    static boolean deleteMode = false;
     static boolean right = false;
     static boolean left = false;
     static boolean crouch = false;
@@ -52,6 +55,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static int mouseX = 0;
     static int mouseY = 0;
     static BufferedImage stone;
+    static BufferedImage delete;
+
     String Blocks = "";
     static Point initialPosition = new Point();
     
@@ -97,8 +102,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     public synchronized void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             
-            case KeyEvent.VK_L:
-                draw ^= true;
+            case KeyEvent.VK_X:
+                
+               deleteMode ^= true;
                
                 break;
             
@@ -158,6 +164,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                   while(Ground.all.get(0).getX()%mouseX!=0)
                       for(Block b : Ground.all){
                               b.x--;
+                              shift--;
                      
                   }
               }
@@ -167,6 +174,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                   while(Ground.all.get(0).getX()%mouseX!=0)
                   for(Block b : Ground.all){
                           b.x--;
+                          shift--;
                       
                   }
               }
@@ -208,10 +216,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     @SuppressWarnings("static-access")
     public void paintComponent(Graphics g) {
         
+      g.setColor(new Color(30,30,30));
       
-        
+        g.fillRect(0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
        
-        System.out.println(shift);
       
      if(right)
          shift+=Sprite.speed;
@@ -236,9 +244,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
      
              
              
-         
-        if(Sprite.level)
-            g.drawImage(stone, mouseX, mouseY - 25, null);
+       
 
         
         Ground.draw(g);
@@ -265,6 +271,14 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         enemyActions();
         
         player.draw(g);
+        
+        if(!deleteMode){
+            if(Sprite.level)
+                g.drawImage(stone, mouseX, mouseY - 25, null);
+        }
+            else
+                g.drawImage(delete, mouseX, mouseY - 25, null);
+
         
     }
     
@@ -328,11 +342,16 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(!deleteMode){
         if(Sprite.level){
         Ground.add(new Block(0, mouseX, mouseY - 25));
         int num = mouseX + shift;
         Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
         }
+       }
+        else {
+           Ground.removeAtPosition(mouseX+shift, mouseY-25);
+       }
     }
     
     @Override
@@ -362,9 +381,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @Override
     public void mouseMoved(MouseEvent e) {
+        int grid = 100;
         
-        int x = ((e.getX() + 99) / 100) * 100;
-        int y = ((e.getY() + 99) / 100) * 100;
+        int x = ((e.getX() + grid-1) / grid) * grid;
+        int y = ((e.getY() + grid-1) / grid) * grid;
         
         
         mouseX = x - 50;
