@@ -24,7 +24,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     public static void main(String[] args) throws IOException {
         stone = ImageIO.read(new File("img/stone1.png"));
-        delete = ImageIO.read(new File("/Users/64009455/Documents/delete.png"));
+        delete = ImageIO.read(new File("img/delete.png"));
 
         
         @SuppressWarnings("unused")

@@ -31,15 +31,12 @@ public class Block {
             /** 2 grass */
             animate.add(ImageIO.read(new File("img/stone1.png")));
             
-            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/lavaBlock2.png")));
-
             
-            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/lavaBlock3.png")));
-
+            animate.add(ImageIO.read(new File("img/lavaBlock3.png")));
             
-            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/lavaBlock1.png")));
+            animate.add(ImageIO.read(new File("img/lavaBlock1.png")));
             
-            animate.add(ImageIO.read(new File("/Users/64009455/Desktop/spikes2.png")));
+            animate.add(ImageIO.read(new File("img/spikes2.png")));
 
 
             
