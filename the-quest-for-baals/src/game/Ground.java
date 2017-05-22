@@ -46,4 +46,13 @@ public class Ground {
     	}
     }
     
+    public static void removeAtPosition(int xPos, int y){
+        for(int x = 0; x < all.size(); x++){
+            if(all.get(x).getX()==xPos&&all.get(x).getY()==y){
+                all.remove(x);
+            break;
+            }
+        }
+    }
+    
 }
