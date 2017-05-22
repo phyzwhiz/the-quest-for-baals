@@ -17,12 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-<<<<<<< HEAD
-public class game extends JPanel implements ActionListener, KeyListener {
-
-=======
 public class game extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
->>>>>>> master
     
     public static void main(String[] args) throws IOException {
         stone = ImageIO.read(new File("img/stone1.png"));
@@ -185,7 +180,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         
         playerActions();
         
-        enemyActions();
+        enemyActions(g);
         
         player.draw(g);
         
@@ -247,10 +242,16 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             player.jump(jumpcount);
     }
     
-    private void enemyActions() {
+    private void enemyActions(Graphics g) {
     	for (Enemy enemy: Ground.enemy)
     	{
+    		if (!enemy.isStand())
+    			enemy.fall();
+    		else 
+    			enemy.move(player.x);
+    		enemy.run(fastswagger);
     		
+    		enemy.draw(g);
     	}
     		
     }

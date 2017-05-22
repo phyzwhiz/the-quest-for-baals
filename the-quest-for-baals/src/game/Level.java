@@ -8,24 +8,25 @@ public class Level {
         Ground.clear();
         if(i == 1)
             constructOne();
+        //Ground.enemy.add(new Melee(500, 500));
     }
     
     public void constructOne() {
-<<<<<<< HEAD
-        Ground.add(new Block(0, 100, 600));
-        Ground.add(new Block(0, 200, 600));
-        Ground.add(new Block(0, 300, 600));
-        Ground.add(new Block(0, 300, 500));
-        Ground.add(new Block(0, 400, 600));
-        Ground.add(new Block(0, 500, 600));
-        Ground.add(new Block(0, 600, 600));
-        Ground.add(new Block(0, 700, 600));
-        Ground.add(new Block(0, 1000, 600));
-        Ground.add(new Block(0, 900, 400));
-        Ground.add(new Block(0, 500, 200));
-        Ground.enemy.add(new Melee(100, 100));
-=======
->>>>>>> master
+//<<<<<<< HEAD
+//        Ground.add(new Block(0, 100, 600));
+//        Ground.add(new Block(0, 200, 600));
+//        Ground.add(new Block(0, 300, 600));
+//        Ground.add(new Block(0, 300, 500));
+//        Ground.add(new Block(0, 400, 600));
+//        Ground.add(new Block(0, 500, 600));
+//        Ground.add(new Block(0, 600, 600));
+//        Ground.add(new Block(0, 700, 600));
+//        Ground.add(new Block(0, 1000, 600));
+//        Ground.add(new Block(0, 900, 400));
+//        Ground.add(new Block(0, 500, 200));
+//        Ground.enemy.add(new Melee(100, 100));
+//=======
+//>>>>>>> master
         
     }
     

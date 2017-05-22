@@ -25,6 +25,8 @@ public class Melee extends Enemy {
     private ArrayList<ArrayList<Point>> ArrayListOfArrayListOfPoints = new ArrayList<ArrayList<Point>>();
     private ArrayList<ArrayList<Rectangle>> mask = new ArrayList<ArrayList<Rectangle>>();
 	private Collide collsionCheck;
+	private int feet;
+	private boolean lastmove;
     
 	public Melee(int startx, int starty)
 	{
@@ -90,17 +92,26 @@ public class Melee extends Enemy {
 			facing = true;
 		
 		if (facing)
-			x += 15;
+			x += 5;
 		else
-			x -= 15;	
+			x -= 5;	
 	}
 	
 	public void run(int fastswagger)
 	{
 		if (facing)
-			display = animate.get(fastswagger);
+		{
+	            display = animate.get(fastswagger);
+	            lastmove = true;
+	            currentList = mask.get(fastswagger);
+		}
 		else 
-			display = animate.get(fastswagger+8);
+		{
+	            display = animate.get(fastswagger + 8);
+	            currentList = mask.get(fastswagger + 8);
+	            lastmove = false;
+	    }
+		
 	}
 	
 	public void fall() {
@@ -174,23 +185,28 @@ public class Melee extends Enemy {
         ArrayListOfArrayListOfPoints.add(temporaryALPoint);
     }
     
-    @Override
+    public void draw(Graphics g) {
+        feet = x + display.getHeight();
+        g.drawImage(display, x, y, null);
+    }
+    
+    
     public boolean awwDidYouHitAWallToYourRight() {
         
         return !collsionCheck.shouldPlayerKeepGoingRight_QuestionMark(currentList);
     }
     
-    @Override
+    
     public boolean areYouInsideABlock_QuestionMark() {
         return collsionCheck.areYouInsideABlock_QuestionMark(currentList);
     }
 
-    @Override
+    
     public boolean awwDidYouHitAWallWithHead() {
         return !collsionCheck.shouldPlayerKeepGoingUp_QuestionMark(currentList);
     }
 
-    @Override
+    
     public boolean awwDidYouHitAWallToYourLeft() {
         return !collsionCheck.shouldPlayerKeepGoingLeft_QuestionMark(currentList);
 
