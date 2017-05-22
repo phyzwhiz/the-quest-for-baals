@@ -12,7 +12,7 @@ public class Level {
     }
     
     public void constructOne() {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //<<<<<<< HEAD
 //        Ground.add(new Block(0, 100, 600));
 //        Ground.add(new Block(0, 200, 600));
@@ -28,9 +28,9 @@ public class Level {
 //        Ground.enemy.add(new Melee(100, 100));
 //=======
 //>>>>>>> master
-=======
-      
->>>>>>> master
+//=======
+//      
+//>>>>>>> master
         
     }
     

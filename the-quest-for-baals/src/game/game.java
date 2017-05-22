@@ -340,11 +340,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(Sprite.level){
-        Ground.add(new Block(0, mouseX, mouseY - 25));
-        int num = mouseX + shift;
-        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
-        }
+//        if(Sprite.level){
+//        Ground.add(new Block(0, mouseX, mouseY - 25));
+//        int num = mouseX + shift;
+//        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
+//        }
     }
     
     @Override
