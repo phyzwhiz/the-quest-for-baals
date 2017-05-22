@@ -8,16 +8,13 @@ import javax.script.ScriptException;
 
 public class Collide extends game {
     
-    static int blockId;
     
     public boolean shouldPlayerFall_QuestionMark(ArrayList<Rectangle> rect) {
         int shift = 20;
         for(Rectangle Sprite11 : rect) {
             for(Block block : Ground.all) {
                 if(((Sprite11.x >= block.getX()) && Sprite11.x < block.getMaxX() && Sprite11.y + shift > block.getY()
-                        && Sprite11.y + shift < block.getMaxY())) {
-                    blockId = block.getID();
-                    
+                        && Sprite11.y + shift < block.getMaxY())) {    
                     if(game.left)
                         Sprite.y = block.getY() - 100;
                     
@@ -37,7 +34,6 @@ public class Collide extends game {
                 
                 if((Sprite1.getY() < block.getMaxY() && Sprite1.getY() > block.getY())
                         && (Sprite1.getX() + 20 > block.getX() && Sprite1.getX() + 20 < block.getMaxX())) {
-                    blockId = block.getID();
                     
                     return true;
                 }
@@ -55,7 +51,6 @@ public class Collide extends game {
                 
                 if(((Sprite1.x > block.getX() && Sprite1.x < block.getMaxX()) && Sprite1.y - 40 < block.getMaxY()
                         && Sprite1.y >= block.getY())) {
-                    blockId = block.getID();
                     return true;
                 }
                 
@@ -72,7 +67,6 @@ public class Collide extends game {
                 
                 if((Sprite1.getY() < block.getMaxY() && Sprite1.getY() > block.getY())
                         && (Sprite1.getX() - 15 > block.getX() && Sprite1.getX() - 15 < block.getMaxX())) {
-                    blockId = block.getID();
                     return true;
                 }
                 
@@ -80,10 +74,6 @@ public class Collide extends game {
         }
         
         return false;
-    }
-    
-    public int getID() {
-        return blockId;
     }
     
     public boolean areYouInsideABlock_QuestionMark(ArrayList<Rectangle> rect) {

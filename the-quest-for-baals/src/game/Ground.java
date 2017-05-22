@@ -35,5 +35,15 @@ public class Ground {
     public static ArrayList<Block> getGroundList() {
         return all;
     }
+    public static void moveRight(boolean half, boolean level){
+    	for(Block b: all){
+    		b.right(half, level);
+    	}
+    }
+    public static void moveLeft(boolean half, boolean level){
+    	for(Block b: all){
+    		b.left(half, level);
+    	}
+    }
     
 }

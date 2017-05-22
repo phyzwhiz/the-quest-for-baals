@@ -24,8 +24,8 @@ public class Fighter extends Sprite {
     
     static Collide collsionCheck = new Collide();
     
-    public Fighter(int startx, int starty) {
-        super(startx, starty);
+    public Fighter(int startx, int starty, boolean gay) {
+        super(startx, starty, gay);
         load();
     }
     
@@ -149,7 +149,9 @@ public class Fighter extends Sprite {
     }
     
     public void draw(Graphics g) {
+        
         feet = Sprite.y + sprite.getHeight();
+        if(!Sprite.level)
         g.drawImage(sprite, Sprite.x, Sprite.y, null);
     }
     
