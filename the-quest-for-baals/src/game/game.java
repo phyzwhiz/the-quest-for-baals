@@ -1,8 +1,10 @@
 package game;
 
+import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -104,7 +106,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
 
 
 
-
+        try {
+			Robot robot = new Robot();
+			robot.mouseMove(100, 100);
+		} catch (AWTException e1) {
+			e1.printStackTrace();
+		}
 
 
 
@@ -217,8 +224,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_ENTER:
                 if(Sprite.level){
-                Ground.add(new Lava(mouseX, mouseY - 25));
-                Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
+                Ground.add(new Lava(mouseX, mouseY ));
+                Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "));";
                
                 }
                 
@@ -299,10 +306,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         
         if(!deleteMode){
             if(Sprite.level)
-                g.drawImage(stone, mouseX, mouseY - 25, null);
+                g.drawImage(stone, mouseX, mouseY, null);
         }
             else
-                g.drawImage(delete, mouseX, mouseY - 25, null);
+                g.drawImage(delete, mouseX, mouseY, null);
 
         
     }
@@ -395,13 +402,13 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
 
         if(!deleteMode){
         if(Sprite.level){
-            Ground.add(new Lava(mouseX, mouseY - 25));
+            Ground.add(new Lava(mouseX, mouseY));
         int num = mouseX + shift;
-        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
+        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "));";
         }
        }
         else {
-           Ground.removeAtPosition(mouseX+shift, mouseY-25);
+           Ground.removeAtPosition(mouseX+shift, mouseY);
        }
     }
     
@@ -432,14 +439,20 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @Override
     public void mouseMoved(MouseEvent e) {
+    	
+    	
         int grid = 100;
+        
        
-        int x = ((e.getX() + grid-1) / grid) * grid;
-        int y = ((e.getY() + grid-1) / grid) * grid;
+        int x = (e.getX()/grid) * grid;
+        int y = (e.getY()/grid) * grid;
+       
+//        int x = ((e.getX() + grid-1) / grid) * grid;
+//        int y = ((e.getY() + grid-1) / grid) * grid;
         
         
-        mouseX = x - 50;
-        mouseY = y - 50;
+        mouseX = x;
+        mouseY = y;
         
     }
     
