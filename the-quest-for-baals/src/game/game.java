@@ -56,6 +56,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static int mouseY = 0;
     static BufferedImage stone;
     static BufferedImage delete;
+    int offset;
 
     String Blocks = "";
     static Point initialPosition = new Point();
@@ -90,7 +91,22 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         timer = new Timer(delay, this);
         timer.start();
 
-        player = new Fighter(1366/2, 0, true);
+        player = new Fighter(600, 0, true);
+        Ground.add(new Lava(0, 0));
+        Ground.add(new Lava(0, 100));
+        Ground.add(new Lava(0, 200));
+        Ground.add(new Lava(0, 300));
+        Ground.add(new Lava(0, 400));
+        Ground.add(new Lava(0, 500));
+        Ground.add(new Lava(0, 600));
+        Ground.add(new Lava(0, 700));
+
+
+
+
+
+
+
 
         
         
@@ -120,9 +136,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_LEFT:
                 left = true;
+                offset += 10;
                 break;
             
             case KeyEvent.VK_RIGHT:
+            	offset += 10;
                 
                 right = true;
                 
@@ -167,6 +185,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                               shift--;
                      
                   }
+                 
+                  
+                  
+                  
+                  
               }
               else{
                   Sprite.speed = 100;
@@ -194,7 +217,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_ENTER:
                 if(Sprite.level){
-                Ground.add(new Block(0, mouseX, mouseY - 25));
+                Ground.add(new Lava(mouseX, mouseY - 25));
                 Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
                
                 }
@@ -269,6 +292,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         playerActions();
         
         enemyActions(g);
+        
+        blocks(g);
         
         player.draw(g);
         
@@ -352,18 +377,25 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     		
     }
     
+    private void blocks(Graphics g) 
+    {
+    	for (Block block: Ground.all) 
+    	{
+    		block.spooky(fastswagger);
+    		try {
+				block.draw(g);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {
-<<<<<<< HEAD
-//        if(Sprite.level){
-//        Ground.add(new Block(0, mouseX, mouseY - 25));
-//        int num = mouseX + shift;
-//        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
-//        }
-=======
+
         if(!deleteMode){
         if(Sprite.level){
-        Ground.add(new Block(0, mouseX, mouseY - 25));
+            Ground.add(new Lava(mouseX, mouseY - 25));
         int num = mouseX + shift;
         Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
         }
@@ -371,7 +403,6 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         else {
            Ground.removeAtPosition(mouseX+shift, mouseY-25);
        }
->>>>>>> master
     }
     
     @Override
@@ -402,7 +433,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     @Override
     public void mouseMoved(MouseEvent e) {
         int grid = 100;
-        
+       
         int x = ((e.getX() + grid-1) / grid) * grid;
         int y = ((e.getY() + grid-1) / grid) * grid;
         

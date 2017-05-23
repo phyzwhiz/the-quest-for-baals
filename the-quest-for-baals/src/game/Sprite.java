@@ -33,8 +33,17 @@ public abstract class Sprite {
     }
     
     public void jump(int i) {
-        if(i > 0)
+    	
+    	//if (i > 0)
+    	//	y -= 25;
+        if(i > 12)
             y -= 25;
+        else if (i > 6)
+        	y -= 12;
+        else if (i > 3)
+        	y -= 6;
+        else if (i > 0)
+        	y -= 3;
         else
             fall();
     }
