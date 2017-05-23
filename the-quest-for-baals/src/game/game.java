@@ -248,7 +248,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         
       g.setColor(new Color(30,30,30));
       
-        g.fillRect(0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        try {
+			g.drawImage(ImageIO.read(new File("img/back.png")), 0, 0, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
        
       
      if(right)
@@ -323,7 +327,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             player.left();
         if(jump && player.isStand()) {
             fliptimer = 0;
-            jumpcount = 20;
+            jumpcount = 16;
             jumpfin = false;
         }
         if(crouch)
