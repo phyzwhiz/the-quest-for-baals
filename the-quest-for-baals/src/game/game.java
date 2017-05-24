@@ -1,8 +1,10 @@
 package game;
 
+import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -19,6 +21,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import nikunj.classes.NewerSound;
 
 public class game extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
     
@@ -56,6 +60,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static int mouseY = 0;
     static BufferedImage stone;
     static BufferedImage delete;
+    int offset;
 
     String Blocks = "";
     static Point initialPosition = new Point();
@@ -68,7 +73,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         //determines player class and levelbuilderness
         
         
+        NewerSound music = new NewerSound("img/what_even_is.wav", true);
+        music.play();
         game bp = new game();
+       
         frame.add(bp);
         frame.addKeyListener(this);
         frame.addMouseListener(this);
@@ -90,7 +98,29 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         timer = new Timer(delay, this);
         timer.start();
 
-        player = new Fighter(1366/2, 0, true);
+        player = new Fighter(600, 0, true);
+        Ground.add(new Lava(0, 0));
+        Ground.add(new Lava(0, 100));
+        Ground.add(new Lava(0, 200));
+        Ground.add(new Lava(0, 300));
+        Ground.add(new Lava(0, 400));
+        Ground.add(new Lava(0, 500));
+        Ground.add(new Lava(0, 600));
+        Ground.add(new Lava(0, 700));
+
+
+
+
+        try {
+			Robot robot = new Robot();
+			robot.mouseMove(100, 100);
+		} catch (AWTException e1) {
+			e1.printStackTrace();
+		}
+        
+        
+
+
 
         
         
@@ -120,9 +150,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_LEFT:
                 left = true;
+                offset += 10;
                 break;
             
             case KeyEvent.VK_RIGHT:
+            	offset += 10;
                 
                 right = true;
                 
@@ -167,6 +199,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                               shift--;
                      
                   }
+                 
+                  
+                  
+                  
+                  
               }
               else{
                   Sprite.speed = 100;
@@ -194,8 +231,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             
             case KeyEvent.VK_ENTER:
                 if(Sprite.level){
-                Ground.add(new Block(0, mouseX, mouseY - 25));
-                Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "-25));";
+                Ground.add(new Lava(mouseX, mouseY ));
+                Blocks += " Ground.add(new Block(0," + mouseX + "," + mouseY + "));";
                
                 }
                 
@@ -215,10 +252,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @SuppressWarnings("static-access")
     public void paintComponent(Graphics g) {
+    	
         
       g.setColor(new Color(30,30,30));
       
-        g.fillRect(0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        try {
+			g.drawImage(ImageIO.read(new File("img/back.png")), 0, 0, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
        
       
      if(right)
@@ -268,16 +310,18 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         
         playerActions();
         
-        enemyActions();
+        enemyActions(g);
+        
+        blocks(g);
         
         player.draw(g);
         
         if(!deleteMode){
             if(Sprite.level)
-                g.drawImage(stone, mouseX, mouseY - 25, null);
+                g.drawImage(stone, mouseX, mouseY, null);
         }
             else
-                g.drawImage(delete, mouseX, mouseY - 25, null);
+                g.drawImage(delete, mouseX, mouseY, null);
 
         
     }
@@ -291,7 +335,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             player.left();
         if(jump && player.isStand()) {
             fliptimer = 0;
-            jumpcount = 20;
+            jumpcount = 16;
             jumpfin = false;
         }
         if(crouch)
@@ -338,19 +382,45 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             player.jump(jumpcount);
     }
     
-    private void enemyActions() {}
+    private void enemyActions(Graphics g) {
+    	for (Enemy enemy: Ground.enemy)
+    	{
+    		if (!enemy.isStand())
+    			enemy.fall();
+    		else 
+    			enemy.move(player.x);
+    		enemy.run(fastswagger);
+    		
+    		enemy.draw(g);
+    	}
+    		
+    }
+    
+    private void blocks(Graphics g) 
+    {
+    	for (Block block: Ground.all) 
+    	{
+    		block.spooky(fastswagger);
+    		try {
+				block.draw(g);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
+    }
     
     @Override
     public void mouseClicked(MouseEvent e) {
+
         if(!deleteMode){
         if(Sprite.level){
-        Ground.add(new Block(0, mouseX, mouseY - 25));
+            Ground.add(new Lava(mouseX, mouseY));
         int num = mouseX + shift;
-        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "-25));";
+        Blocks += " Ground.add(new Block(0," + num + "," + mouseY + "));";
         }
        }
         else {
-           Ground.removeAtPosition(mouseX+shift, mouseY-25);
+           Ground.removeAtPosition(mouseX+shift, mouseY);
        }
     }
     
@@ -381,14 +451,20 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @Override
     public void mouseMoved(MouseEvent e) {
+    	
+    	
         int grid = 100;
         
-        int x = ((e.getX() + grid-1) / grid) * grid;
-        int y = ((e.getY() + grid-1) / grid) * grid;
+       
+        int x = (e.getX()/grid) * grid;
+        int y = (e.getY()/grid) * grid;
+       
+//        int x = ((e.getX() + grid-1) / grid) * grid;
+//        int y = ((e.getY() + grid-1) / grid) * grid;
         
         
-        mouseX = x - 50;
-        mouseY = y - 50;
+        mouseX = x;
+        mouseY = y;
         
     }
     

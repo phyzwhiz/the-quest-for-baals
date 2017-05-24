@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Ground {
+
     
     static ArrayList<Block> all = new ArrayList<Block>();
+	static ArrayList<Object> non = new ArrayList<Object>();
+	static ArrayList<Enemy> enemy = new ArrayList<Enemy>();
+
     
     public Ground() {}
     
