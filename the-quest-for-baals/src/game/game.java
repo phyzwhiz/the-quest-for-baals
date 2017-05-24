@@ -22,6 +22,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import nikunj.classes.NewerSound;
+
 public class game extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
     
     public static void main(String[] args) throws IOException {
@@ -71,7 +73,10 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         //determines player class and levelbuilderness
         
         
+        NewerSound music = new NewerSound("img/what_even_is.wav", true);
+        music.play();
         game bp = new game();
+       
         frame.add(bp);
         frame.addKeyListener(this);
         frame.addMouseListener(this);
@@ -112,6 +117,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
 		} catch (AWTException e1) {
 			e1.printStackTrace();
 		}
+        
+        
 
 
 
@@ -245,6 +252,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     
     @SuppressWarnings("static-access")
     public void paintComponent(Graphics g) {
+    	
         
       g.setColor(new Color(30,30,30));
       
