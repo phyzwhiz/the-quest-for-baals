@@ -6,17 +6,18 @@ import java.util.ArrayList;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-public class Collide extends game {
+public class Collide{
     
     
-    public boolean shouldPlayerFall_QuestionMark(ArrayList<Rectangle> rect) {
+    public boolean shouldPlayerFall_QuestionMark(ArrayList<Rectangle> rect, Object obs) {
         int shift = 20;
         for(Rectangle Sprite11 : rect) {
             for(Block block : Ground.all) {
                 if(((Sprite11.x >= block.getX()) && Sprite11.x < block.getMaxX() && Sprite11.y + shift > block.getY()
                         && Sprite11.y + shift < block.getMaxY())) {    
-                    if(game.left)
-                        Sprite.y = block.getY() - 100;
+                   // if(game.left)
+                     //   Sprite.y = block.getY() - 100;
+                   
                     
                     return true;
                 }

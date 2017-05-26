@@ -7,7 +7,7 @@ public abstract class Sprite {
     static int speed = 10;
     static int x;
     static int y;
-    private boolean halfspeed = false;
+     static boolean halfspeed = false;
     static boolean level;
     
     public Sprite(int startx, int starty, boolean level) {
