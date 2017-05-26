@@ -264,7 +264,7 @@ public class Fighter extends Sprite {
     }
     
     public boolean isStand() {
-        return collsionCheck.shouldPlayerFall_QuestionMark(currentList);
+        return collsionCheck.shouldPlayerFall_QuestionMark(currentList, this);
     }
     
     public void drawMask(Graphics g) {

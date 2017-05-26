@@ -14,9 +14,13 @@ public class Ground {
     
     public Ground() {}
     
-    public static void add(Block block) {
-        all.add(block);
-    }
+//    public static void add(Block block) {
+//        all.add(block);
+//    }
+//    
+//    public static void add(Enemy e) {
+//        enemy.add(e);
+//    }
     
     public static void clear() {
         all.clear();
@@ -46,13 +50,15 @@ public class Ground {
     	}
     }
     
-    public static void removeAtPosition(int xPos, int y){
+    public static int removeAtPosition(int xPos, int y, int shift){
         for(int x = 0; x < all.size(); x++){
-            if(all.get(x).getX()==xPos&&all.get(x).getY()==y){
+            if(all.get(x).getX()+shift==xPos&&all.get(x).getY()==y){
                 all.remove(x);
-            break;
+                
+            return x;
             }
         }
+        return -1;
     }
     
 }
