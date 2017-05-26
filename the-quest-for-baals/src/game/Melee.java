@@ -124,9 +124,22 @@ public class Melee extends Enemy {
     }
     
     public void fall() {
-        if(!isStand())
+        if(!isStand() && jumpCount <= 0)
             y += 25;
        
+    }
+    
+    public void jump() 
+    {
+    	jumpCount = 12;
+    	if(awwDidYouHitAWallToYourRight() || awwDidYouHitAWallToYourLeft())
+    		if (jumpCount > 0)
+    		{
+    			y-=25;
+    			jumpCount--;
+    		}
+    		
+    		
     }
     
     public void updateMask() {
@@ -229,10 +242,6 @@ public class Melee extends Enemy {
         
     }
 
-    @Override
-    public void jump() {
-        // TODO Auto-generated method stub
-        
-    }
+	
     
 }

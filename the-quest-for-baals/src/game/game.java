@@ -37,7 +37,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     private static final long serialVersionUID = 1L;
     static int shift = 0;
     static int counterE = 0;
-    static int delay = 20;
+    static int delay = 200;
     protected Timer timer;
     Sprite player;
     static int xN = 0;
@@ -49,6 +49,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static boolean crouch = false;
     static boolean jump = false;
     int jumpcount = 0;
+    int enemyjump = 0;
     static int counter = 0;
     static boolean swagger = false;
     static int fastswagger = 0;
@@ -177,6 +178,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 Sprite.level ^= true;
                 if(Sprite.speed == 100) {
                     Sprite.speed = 10;
+                    if (mouseX > 0)
                     while(Ground.all.get(0).getX() % mouseX != 0)
                         for(Block b : Ground.all) {
                             b.x--;
@@ -188,12 +190,14 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 else {
                     Sprite.speed = 100;
                     
+                    if (mouseX > 0)
                     while(Ground.all.get(0).getX() % mouseX != 0)
                         for(Block b : Ground.all) {
                             b.x--;
                             shift--;
                             
                         }
+                    	
                 }
                 break;
             
@@ -372,10 +376,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         for(Enemy enemy : Ground.enemy) {
         
            
-            if(!enemy.isStand()){
+           
 
+                if (enemy.awwDidYouHitAWallToYourRight() || enemy.awwDidYouHitAWallToYourLeft())
+                	enemy.jump();
                 enemy.fall();
-            }
+            
            // else
           
                 enemy.move(player.x);
