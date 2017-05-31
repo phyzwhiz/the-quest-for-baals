@@ -28,6 +28,7 @@ public class Melee extends Enemy {
     private int feet;
     private boolean lastmove;
     static int jumpCount = 0;
+    boolean dead;
 
     
     public Melee(int startx, int starty) {
@@ -240,6 +241,11 @@ public class Melee extends Enemy {
     public int getX() {
         return x;
         
+    }
+    
+    public void damage()
+    {
+    	dead = true;
     }
 
 	

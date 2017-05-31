@@ -21,6 +21,7 @@ public class Fighter extends Sprite {
     BufferedImage sprite;
     boolean lastmove = true;
     int feet;
+    boolean dead = false;
     
     static Collide collsionCheck = new Collide();
     
@@ -264,7 +265,10 @@ public class Fighter extends Sprite {
     }
     
     public boolean isStand() {
-        return collsionCheck.shouldPlayerFall_QuestionMark(currentList, this);
+        boolean returnvalue = collsionCheck.shouldPlayerFall_QuestionMark(currentList, this);
+        if (returnvalue)
+        	dead = true;
+        return returnvalue;
     }
     
     public void drawMask(Graphics g) {
@@ -329,6 +333,17 @@ public class Fighter extends Sprite {
     public boolean awwDidYouHitAWallToYourLeft() {
         return !collsionCheck.shouldPlayerKeepGoingLeft_QuestionMark(currentList);
         
+    }
+    
+    public void damage()
+    {
+//    	if (collsionCheck.areYouHurt())
+    		dead = true;
+    }
+    
+    public boolean isDead()
+    {
+    	return dead;
     }
     
 }

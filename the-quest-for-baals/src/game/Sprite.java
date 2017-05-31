@@ -100,4 +100,10 @@ public abstract class Sprite {
     
     public abstract void load();
     
+    public abstract void damage();
+    
+    public abstract boolean isDead();
+    
+    
+    
 }
