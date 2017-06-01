@@ -39,25 +39,26 @@ public class Fighter extends Sprite {
     public void load() {
         try {
             /** 0-7 run right (0) */
-            animate.add(ImageIO.read(new File("img/rightrun7.png")));
+            animate.add(ImageIO.read(new File("img/newProtag1.png")));
+            animate.add(ImageIO.read(new File("img/newProtag2.png")));
+            animate.add(ImageIO.read(new File("img/newProtag3.png")));
+            animate.add(ImageIO.read(new File("img/newProtag4.png")));
+            animate.add(ImageIO.read(new File("img/newProtag5.png")));
+            animate.add(ImageIO.read(new File("img/newProtag6.png")));
+            animate.add(ImageIO.read(new File("img/newProtag7.png")));
+            animate.add(ImageIO.read(new File("img/newProtag8.png")));
             
-            animate.add(ImageIO.read(new File("img/rightrun6.png")));
-            animate.add(ImageIO.read(new File("img/rightrun5.png")));
-            animate.add(ImageIO.read(new File("img/rightrun4.png")));
-            animate.add(ImageIO.read(new File("img/rightrun3.png")));
-            animate.add(ImageIO.read(new File("img/rightrun2.png")));
-            animate.add(ImageIO.read(new File("img/rightrun1.png")));
-            animate.add(ImageIO.read(new File("img/rightrun0.png")));
+            
             
             /** 8-15 run left (+8) */
-            animate.add(ImageIO.read(new File("img/leftrun0.png")));
-            animate.add(ImageIO.read(new File("img/leftrun1.png")));
-            animate.add(ImageIO.read(new File("img/leftrun2.png")));
-            animate.add(ImageIO.read(new File("img/leftrun3.png")));
-            animate.add(ImageIO.read(new File("img/leftrun4.png")));
-            animate.add(ImageIO.read(new File("img/leftrun5.png")));
-            animate.add(ImageIO.read(new File("img/leftrun6.png")));
-            animate.add(ImageIO.read(new File("img/leftrun7.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft1.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft2.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft3.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft4.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft5.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft6.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft7.png")));
+            animate.add(ImageIO.read(new File("img/newProtagLeft8.png")));
             
             /** 16-23 crouch move right (+16) */
             animate.add(ImageIO.read(new File("img/a.png")));
@@ -80,36 +81,38 @@ public class Fighter extends Sprite {
             animate.add(ImageIO.read(new File("img/onedot.png")));
             
             /** 32-39 jump right (+32) */
-            animate.add(ImageIO.read(new File("img/one.png")));
-            animate.add(ImageIO.read(new File("img/two.png")));
-            animate.add(ImageIO.read(new File("img/three.png")));
-            animate.add(ImageIO.read(new File("img/four.png")));
-            animate.add(ImageIO.read(new File("img/five.png")));
-            animate.add(ImageIO.read(new File("img/six.png")));
-            animate.add(ImageIO.read(new File("img/seven.png")));
-            animate.add(ImageIO.read(new File("img/one.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight1.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight2.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight3.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight4.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight5.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight6.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight7.png")));
+            animate.add(ImageIO.read(new File("img/jumpRight8.png")));
+            
             
             /** 40-47 jump left (+40) */
-            animate.add(ImageIO.read(new File("img/one.png")));
-            animate.add(ImageIO.read(new File("img/two.png")));
-            animate.add(ImageIO.read(new File("img/three.png")));
-            animate.add(ImageIO.read(new File("img/four.png")));
-            animate.add(ImageIO.read(new File("img/five.png")));
-            animate.add(ImageIO.read(new File("img/six.png")));
-            animate.add(ImageIO.read(new File("img/seven.png")));
-            animate.add(ImageIO.read(new File("img/one.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft1.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft2.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft3.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft4.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft5.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft6.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft7.png")));
+            animate.add(ImageIO.read(new File("img/jumpLeft8.png")));
+            
             
             /** 48-49 fall right/left */
-            animate.add(ImageIO.read(new File("img/ffallr.png")));
-            animate.add(ImageIO.read(new File("img/ffalll.png")));
+            animate.add(ImageIO.read(new File("img/fallRight.png")));
+            animate.add(ImageIO.read(new File("img/fallLeft.png")));
             
             /** 50-51 upswagger right/left */
-            animate.add(ImageIO.read(new File("img/fusr.png")));
-            animate.add(ImageIO.read(new File("img/fusl.png")));
+            animate.add(ImageIO.read(new File("img/IdleRight2n.png")));
+            animate.add(ImageIO.read(new File("img/hi.png")));
             
             /** 52-53 downswagger right/left */
-            animate.add(ImageIO.read(new File("img/fdsr.png")));
-            animate.add(ImageIO.read(new File("img/fdsl.png")));
+            animate.add(ImageIO.read(new File("img/IdleRight1n.png")));
+            animate.add(ImageIO.read(new File("img/hi.png")));
             
             /** 54-55 crouch up swagger right/left */
             animate.add(ImageIO.read(new File("img/red.png")));
@@ -266,8 +269,8 @@ public class Fighter extends Sprite {
     
     public boolean isStand() {
         boolean returnvalue = collsionCheck.shouldPlayerFall_QuestionMark(currentList, this);
-        if (returnvalue)
-        	dead = true;
+//        if (returnvalue)
+//        	dead = true;
         return returnvalue;
     }
     

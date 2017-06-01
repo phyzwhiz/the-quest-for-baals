@@ -37,7 +37,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     private static final long serialVersionUID = 1L;
     static int shift = 0;
     static int counterE = 0;
-    static int delay = 4250;
+    static int delay = 30;
     protected Timer timer;
     Sprite player;
     static int xN = 0;
