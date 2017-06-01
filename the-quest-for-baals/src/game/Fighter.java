@@ -51,14 +51,14 @@ public class Fighter extends Sprite {
             
             
             /** 8-15 run left (+8) */
-            animate.add(ImageIO.read(new File("img/newProtagLeft1.png")));
-            animate.add(ImageIO.read(new File("img/newProtagLeft2.png")));
-            animate.add(ImageIO.read(new File("img/newProtagLeft3.png")));
-            animate.add(ImageIO.read(new File("img/newProtagLeft4.png")));
-            animate.add(ImageIO.read(new File("img/newProtagLeft5.png")));
-            animate.add(ImageIO.read(new File("img/newProtagLeft6.png")));
-            animate.add(ImageIO.read(new File("img/newProtagLeft7.png")));
-            animate.add(ImageIO.read(new File("img/newProtagLeft8.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft1.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft2.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft3.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft4.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft5.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft6.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft7.png")));
+            animate.add(ImageIO.read(new File("img/protagLeft8.png")));
             
             /** 16-23 crouch move right (+16) */
             animate.add(ImageIO.read(new File("img/a.png")));
@@ -108,11 +108,11 @@ public class Fighter extends Sprite {
             
             /** 50-51 upswagger right/left */
             animate.add(ImageIO.read(new File("img/IdleRight2n.png")));
-            animate.add(ImageIO.read(new File("img/hi.png")));
+            animate.add(ImageIO.read(new File("img/idleLeft2.png")));
             
             /** 52-53 downswagger right/left */
             animate.add(ImageIO.read(new File("img/IdleRight1n.png")));
-            animate.add(ImageIO.read(new File("img/hi.png")));
+            animate.add(ImageIO.read(new File("img/idleLeft1.png")));
             
             /** 54-55 crouch up swagger right/left */
             animate.add(ImageIO.read(new File("img/red.png")));
