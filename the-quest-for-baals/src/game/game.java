@@ -79,7 +79,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         // game start screen
         // determines player class and levelbuilderness
         
-        music = new NewerSound("img/what_even_is.wav", true);
+        music = new NewerSound("img/w_a_v_e.wav", true);
         music.play();
         game bp = new game();
         
