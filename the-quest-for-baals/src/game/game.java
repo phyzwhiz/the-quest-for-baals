@@ -37,7 +37,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     private static final long serialVersionUID = 1L;
     static int shift = 0;
     static int counterE = 0;
-    static int delay = 20;
+    static int delay = 30;
     protected Timer timer;
     Sprite player;
     static int xN = 0;
@@ -49,6 +49,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static boolean crouch = false;
     static boolean jump = false;
     int jumpcount = 0;
+    int enemyjump = 0;
     static int counter = 0;
     static boolean swagger = false;
     static int fastswagger = 0;
@@ -62,6 +63,9 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static BufferedImage delete;
     static BufferedImage back;
     static ArrayList<String> objects = new ArrayList<String>();
+    static NewerSound music;
+    JFrame frame;
+    boolean checked = false;
     
     int offset;
     
@@ -69,13 +73,13 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static Point initialPosition = new Point();
     
     public game(String s) throws IOException {
-        JFrame frame = new JFrame(s);
+        frame = new JFrame(s);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         // game start screen
         // determines player class and levelbuilderness
         
-        NewerSound music = new NewerSound("img/what_even_is.wav", true);
+        music = new NewerSound("img/w_a_v_e.wav", true);
         music.play();
         game bp = new game();
         
@@ -112,6 +116,20 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
             e1.printStackTrace();
         }
         
+    }
+    
+    public void endGame()
+    {
+    	if (!checked)
+    	{
+        	music.stop();
+    		music = new NewerSound("img/bitty_two.wav", true);
+    		music.play();
+    		Ground.all.clear();
+    		frame = new JFrame();
+    		frame.setBackground(new Color(0, 0, 0));
+    	}
+    	
     }
     
     @Override
@@ -177,6 +195,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 Sprite.level ^= true;
                 if(Sprite.speed == 100) {
                     Sprite.speed = 10;
+                    if (mouseX > 0)
                     while(Ground.all.get(0).getX() % mouseX != 0)
                         for(Block b : Ground.all) {
                             b.x--;
@@ -188,12 +207,14 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
                 else {
                     Sprite.speed = 100;
                     
+                    if (mouseX > 0)
                     while(Ground.all.get(0).getX() % mouseX != 0)
                         for(Block b : Ground.all) {
                             b.x--;
                             shift--;
                             
                         }
+                    	
                 }
                 break;
             
@@ -292,7 +313,8 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         }
         
         counter++;
-        
+        if (!checked)
+        {
         playerActions();
         
         enemyActions(g);
@@ -307,7 +329,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         }
         else
             g.drawImage(delete, mouseX, mouseY, null);
-        
+        }
     }
     
     private void playerActions() {
@@ -364,6 +386,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         }
         else if(!(player.isStand()))
             player.jump(jumpcount);
+        
+//        player.damage();
+        
+        if (player.isDead())
+        {
+        	endGame();
+        	checked = true;
+        }
+        
     }
     
     private void enemyActions(Graphics g) {
@@ -372,10 +403,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         for(Enemy enemy : Ground.enemy) {
         
            
-            if(!enemy.isStand()){
+           
 
+                if (enemy.awwDidYouHitAWallToYourRight() || enemy.awwDidYouHitAWallToYourLeft())
+                	enemy.jump();
                 enemy.fall();
-            }
+            
            // else
           
                 enemy.move(player.x);

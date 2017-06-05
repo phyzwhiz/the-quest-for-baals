@@ -18,6 +18,10 @@ public abstract class Enemy {
 	public abstract void draw(Graphics g);
 	public abstract void updateMask();
 	public abstract void jump();
+	public abstract boolean awwDidYouHitAWallToYourRight();
+	public abstract boolean awwDidYouHitAWallToYourLeft();
+	public abstract boolean areYouInsideABlock_QuestionMark();
+	public abstract boolean awwDidYouHitAWallWithHead();
 	
 	
 	

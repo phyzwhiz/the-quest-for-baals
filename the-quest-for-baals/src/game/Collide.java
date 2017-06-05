@@ -91,4 +91,20 @@ public class Collide{
         return false;
     }
     
+//    public boolean areYouHurt()
+//    {
+//    	for(/**all objects in game*/)
+//    	{
+//    		if (/**object is stabby stabby*/)
+//    		{
+//    			if (/**object does a touch*/)
+//    			{
+//    				return true;
+//    			}
+//    		}
+//    	}
+//    	
+//    	return false;
+//    }
+    
 }

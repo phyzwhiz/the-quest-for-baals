@@ -28,6 +28,7 @@ public class Melee extends Enemy {
     private int feet;
     private boolean lastmove;
     static int jumpCount = 0;
+    boolean dead;
 
     
     public Melee(int startx, int starty) {
@@ -124,9 +125,22 @@ public class Melee extends Enemy {
     }
     
     public void fall() {
-        if(!isStand())
+        if(!isStand() && jumpCount <= 0)
             y += 25;
        
+    }
+    
+    public void jump() 
+    {
+    	jumpCount = 12;
+    	if(awwDidYouHitAWallToYourRight() || awwDidYouHitAWallToYourLeft())
+    		if (jumpCount > 0)
+    		{
+    			y-=25;
+    			jumpCount--;
+    		}
+    		
+    		
     }
     
     public void updateMask() {
@@ -228,11 +242,12 @@ public class Melee extends Enemy {
         return x;
         
     }
-
-    @Override
-    public void jump() {
-        // TODO Auto-generated method stub
-        
+    
+    public void damage()
+    {
+    	dead = true;
     }
+
+	
     
 }
