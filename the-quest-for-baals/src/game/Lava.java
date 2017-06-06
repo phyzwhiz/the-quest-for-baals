@@ -19,14 +19,14 @@ public class Lava extends Block {
 		try {
 			
 			/** lava animate (+0) */
-			animate.add(ImageIO.read(new File("img/lava1.png")));
-			animate.add(ImageIO.read(new File("img/lava2.png")));
-			animate.add(ImageIO.read(new File("img/lava3.png")));
-			animate.add(ImageIO.read(new File("img/lava4.png")));
-			animate.add(ImageIO.read(new File("img/lava5.png")));
-			animate.add(ImageIO.read(new File("img/lava6.png")));
-			animate.add(ImageIO.read(new File("img/lava7.png")));
-			animate.add(ImageIO.read(new File("img/lava8.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava1.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava2.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava3.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava4.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava5.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava6.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava7.png")));
+			animate.add(ImageIO.read(game.class.getResource("/lava8.png")));
 			
 		} catch (IOException e) {
 			e.printStackTrace();

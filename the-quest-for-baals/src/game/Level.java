@@ -12,20 +12,11 @@ public class Level {
     }
     
     public void constructOne() {
-        Ground.all.add(new Lava(100, 600));
-        Ground.all.add(new Lava(200, 600));
-        Ground.all.add(new Lava(300, 600));
-        Ground.all.add(new Lava(400, 600));
-        Ground.all.add(new Lava(500, 600));
-        Ground.all.add(new Lava(600, 600));
-        Ground.all.add(new Lava(800, 600));
-        Ground.all.add(new Lava(700, 600));
-        Ground.all.add(new Lava(900, 600));
-        Ground.all.add(new Lava(1000, 600));
-        Ground.all.add(new Lava(1100, 600));
-        Ground.all.add(new Lava(1200, 600));
+       
         
-        Ground.all.add(new Lava( 800, 400));
+        Ground.all.add(new Stone(100,0)); Ground.all.add(new Stone(100,100)); Ground.all.add(new Stone(100,200)); Ground.all.add(new Stone(100,300)); Ground.all.add(new Stone(100,400)); Ground.all.add(new Stone(100,600)); Ground.all.add(new Stone(100,500)); Ground.all.add(new Stone(200,600)); Ground.all.add(new Stone(300,600)); Ground.all.add(new Stone(400,600)); Ground.all.add(new Stone(500,600)); Ground.all.add(new Stone(600,600)); Ground.all.add(new Stone(700,600)); Ground.all.add(new Stone(800,600)); Ground.all.add(new Stone(900,600)); Ground.all.add(new Stone(1000,600)); Ground.all.add(new Stone(1100,600)); Ground.all.add(new Stone(1200,600)); Ground.all.add(new Stone(1100,600)); Ground.all.add(new Stone(1000,600)); Ground.all.add(new Stone(900,600)); Ground.all.add(new Stone(800,600)); Ground.all.add(new Stone(700,600)); Ground.all.add(new Stone(700,400)); Ground.all.add(new Stone(700,400));
+
+        
         
         Ground.enemy.add(new Melee(200, -100));
     }

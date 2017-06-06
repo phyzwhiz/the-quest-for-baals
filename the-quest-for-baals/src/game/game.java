@@ -27,9 +27,9 @@ import nikunj.classes.NewerSound;
 public class game extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
     
     public static void main(String[] args) throws IOException {
-        stone = ImageIO.read(new File("img/stone1.png"));
-        delete = ImageIO.read(new File("img/delete.png"));
-        back = ImageIO.read(new File("img/back.png"));
+        stone = ImageIO.read(game.class.getResource("/stone1.png"));
+        delete = ImageIO.read(game.class.getResource("/delete.png"));
+        back = ImageIO.read(game.class.getResource("/back.png"));
         @SuppressWarnings("unused")
         game run = new game("Game");
     }
@@ -79,7 +79,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         // game start screen
         // determines player class and levelbuilderness
         
-        music = new NewerSound("img/w_a_v_e.wav", true);
+        music = new NewerSound(game.class.getResource("/w_a_v_e.wav"), true);
         music.play();
         game bp = new game();
         
@@ -123,7 +123,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     	if (!checked)
     	{
         	music.stop();
-    		music = new NewerSound("img/bitty_two.wav", true);
+    		music = new NewerSound(game.class.getResource("/bitty_two.wav"), true);
     		music.play();
     		Ground.all.clear();
     		frame = new JFrame();
@@ -446,7 +446,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
               //  Ground.enemy.add(new Melee(mouseX, mouseY-800));
 
                 int num = mouseX + shift;
-                objects.add(" Ground.add(new Block(0," + mouseX + "," + mouseY + "));");
+                objects.add(" Ground.all.add(new Lava(" + mouseX + "," + mouseY + "));");
                 
             }
         }

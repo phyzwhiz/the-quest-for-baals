@@ -39,88 +39,88 @@ public class Fighter extends Sprite {
     public void load() {
         try {
             /** 0-7 run right (0) */
-            animate.add(ImageIO.read(new File("img/newProtag1.png")));
-            animate.add(ImageIO.read(new File("img/newProtag2.png")));
-            animate.add(ImageIO.read(new File("img/newProtag3.png")));
-            animate.add(ImageIO.read(new File("img/newProtag4.png")));
-            animate.add(ImageIO.read(new File("img/newProtag5.png")));
-            animate.add(ImageIO.read(new File("img/newProtag6.png")));
-            animate.add(ImageIO.read(new File("img/newProtag7.png")));
-            animate.add(ImageIO.read(new File("img/newProtag8.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag3.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag4.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag5.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag6.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag7.png")));
+            animate.add(ImageIO.read(game.class.getResource("/newProtag8.png")));
             
             
             
             /** 8-15 run left (+8) */
-            animate.add(ImageIO.read(new File("img/protagLeft1.png")));
-            animate.add(ImageIO.read(new File("img/protagLeft2.png")));
-            animate.add(ImageIO.read(new File("img/protagLeft3.png")));
-            animate.add(ImageIO.read(new File("img/protagLeft4.png")));
-            animate.add(ImageIO.read(new File("img/protagLeft5.png")));
-            animate.add(ImageIO.read(new File("img/protagLeft6.png")));
-            animate.add(ImageIO.read(new File("img/protagLeft7.png")));
-            animate.add(ImageIO.read(new File("img/protagLeft8.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft3.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft4.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft5.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft6.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft7.png")));
+            animate.add(ImageIO.read(game.class.getResource("/protagLeft8.png")));
             
             /** 16-23 crouch move right (+16) */
-            animate.add(ImageIO.read(new File("img/a.png")));
-            animate.add(ImageIO.read(new File("img/b.png")));
-            animate.add(ImageIO.read(new File("img/c.png")));
-            animate.add(ImageIO.read(new File("img/d.png")));
-            animate.add(ImageIO.read(new File("img/e.png")));
-            animate.add(ImageIO.read(new File("img/f.png")));
-            animate.add(ImageIO.read(new File("img/g.png")));
-            animate.add(ImageIO.read(new File("img/a.png")));
+            animate.add(ImageIO.read(game.class.getResource("/a.png")));
+            animate.add(ImageIO.read(game.class.getResource("/b.png")));
+            animate.add(ImageIO.read(game.class.getResource("/c.png")));
+            animate.add(ImageIO.read(game.class.getResource("/d.png")));
+            animate.add(ImageIO.read(game.class.getResource("/e.png")));
+            animate.add(ImageIO.read(game.class.getResource("/f.png")));
+            animate.add(ImageIO.read(game.class.getResource("/g.png")));
+            animate.add(ImageIO.read(game.class.getResource("/a.png")));
             
             /** 24-31 crouch move right (+24) */
-            animate.add(ImageIO.read(new File("img/onedot.png")));
-            animate.add(ImageIO.read(new File("img/twodot.png")));
-            animate.add(ImageIO.read(new File("img/threedot.png")));
-            animate.add(ImageIO.read(new File("img/fourdot.png")));
-            animate.add(ImageIO.read(new File("img/fivedot.png")));
-            animate.add(ImageIO.read(new File("img/sixdot.png")));
-            animate.add(ImageIO.read(new File("img/sevendot.png")));
-            animate.add(ImageIO.read(new File("img/onedot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/onedot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/twodot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/threedot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/fourdot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/fivedot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/sixdot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/sevendot.png")));
+            animate.add(ImageIO.read(game.class.getResource("/onedot.png")));
             
             /** 32-39 jump right (+32) */
-            animate.add(ImageIO.read(new File("img/jumpRight1.png")));
-            animate.add(ImageIO.read(new File("img/jumpRight2.png")));
-            animate.add(ImageIO.read(new File("img/jumpRight3.png")));
-            animate.add(ImageIO.read(new File("img/jumpRight4.png")));
-            animate.add(ImageIO.read(new File("img/jumpRight5.png")));
-            animate.add(ImageIO.read(new File("img/jumpRight6.png")));
-            animate.add(ImageIO.read(new File("img/jumpRight7.png")));
-            animate.add(ImageIO.read(new File("img/jumpRight8.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight3.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight4.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight5.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight6.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight7.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpRight8.png")));
             
             
             /** 40-47 jump left (+40) */
-            animate.add(ImageIO.read(new File("img/jumpLeft1.png")));
-            animate.add(ImageIO.read(new File("img/jumpLeft2.png")));
-            animate.add(ImageIO.read(new File("img/jumpLeft3.png")));
-            animate.add(ImageIO.read(new File("img/jumpLeft4.png")));
-            animate.add(ImageIO.read(new File("img/jumpLeft5.png")));
-            animate.add(ImageIO.read(new File("img/jumpLeft6.png")));
-            animate.add(ImageIO.read(new File("img/jumpLeft7.png")));
-            animate.add(ImageIO.read(new File("img/jumpLeft8.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft3.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft4.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft5.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft6.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft7.png")));
+            animate.add(ImageIO.read(game.class.getResource("/jumpLeft8.png")));
             
             
             /** 48-49 fall right/left */
-            animate.add(ImageIO.read(new File("img/fallRight.png")));
-            animate.add(ImageIO.read(new File("img/fallLeft.png")));
+            animate.add(ImageIO.read(game.class.getResource("/fallRight.png")));
+            animate.add(ImageIO.read(game.class.getResource("/fallLeft.png")));
             
             /** 50-51 upswagger right/left */
-            animate.add(ImageIO.read(new File("img/IdleRight2n.png")));
-            animate.add(ImageIO.read(new File("img/idleLeft2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/IdleRight2n.png")));
+            animate.add(ImageIO.read(game.class.getResource("/idleLeft2.png")));
             
             /** 52-53 downswagger right/left */
-            animate.add(ImageIO.read(new File("img/IdleRight1n.png")));
-            animate.add(ImageIO.read(new File("img/idleLeft1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/IdleRight1n.png")));
+            animate.add(ImageIO.read(game.class.getResource("/idleLeft1.png")));
             
             /** 54-55 crouch up swagger right/left */
-            animate.add(ImageIO.read(new File("img/red.png")));
-            animate.add(ImageIO.read(new File("img/red.png")));
+            animate.add(ImageIO.read(game.class.getResource("/red.png")));
+            animate.add(ImageIO.read(game.class.getResource("/red.png")));
             
             /** 56-57 crouch down swagger right/left */
-            animate.add(ImageIO.read(new File("img/red.png")));
-            animate.add(ImageIO.read(new File("img/reddown.png")));
+            animate.add(ImageIO.read(game.class.getResource("/red.png")));
+            animate.add(ImageIO.read(game.class.getResource("/reddown.png")));
             
             for(BufferedImage img : animate) {
                 maskCreator(img);
