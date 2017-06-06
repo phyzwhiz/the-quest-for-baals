@@ -13,11 +13,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -79,7 +79,11 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         // game start screen
         // determines player class and levelbuilderness
         
-        music = new NewerSound(game.class.getResource("/w_a_v_e.wav"), true);
+        try {
+			music = new NewerSound(game.class.getResource("/w_a_v_e.wav"), true);
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
         music.play();
         game bp = new game();
         
@@ -123,7 +127,13 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     	if (!checked)
     	{
         	music.stop();
-    		music = new NewerSound(game.class.getResource("/bitty_two.wav"), true);
+    		try {
+				music = new NewerSound(game.class.getResource("/bitty_two.wav"), true);
+			} catch (UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
     		music.play();
     		Ground.all.clear();
     		frame = new JFrame();

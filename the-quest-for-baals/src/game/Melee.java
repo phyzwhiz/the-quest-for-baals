@@ -42,38 +42,38 @@ public class Melee extends Enemy {
     public void load() {
         try {
             /** 0-7 move right (0) */
-            animate.add(ImageIO.read(new File("img/rightrun7.png")));
-            animate.add(ImageIO.read(new File("img/rightrun6.png")));
-            animate.add(ImageIO.read(new File("img/rightrun5.png")));
-            animate.add(ImageIO.read(new File("img/rightrun4.png")));
-            animate.add(ImageIO.read(new File("img/rightrun3.png")));
-            animate.add(ImageIO.read(new File("img/rightrun2.png")));
-            animate.add(ImageIO.read(new File("img/rightrun1.png")));
-            animate.add(ImageIO.read(new File("img/rightrun0.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun7.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun6.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun5.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun4.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun3.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/rightrun0.png")));
             
             /** 8-15 move left (+8) */
-            animate.add(ImageIO.read(new File("img/leftrun0.png")));
-            animate.add(ImageIO.read(new File("img/leftrun1.png")));
-            animate.add(ImageIO.read(new File("img/leftrun2.png")));
-            animate.add(ImageIO.read(new File("img/leftrun3.png")));
-            animate.add(ImageIO.read(new File("img/leftrun4.png")));
-            animate.add(ImageIO.read(new File("img/leftrun5.png")));
-            animate.add(ImageIO.read(new File("img/leftrun6.png")));
-            animate.add(ImageIO.read(new File("img/leftrun7.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun0.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun3.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun4.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun5.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun6.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun7.png")));
             
             /** 16-23 attack (+16) */
-            animate.add(ImageIO.read(new File("img/leftrun0.png")));
-            animate.add(ImageIO.read(new File("img/leftrun1.png")));
-            animate.add(ImageIO.read(new File("img/leftrun2.png")));
-            animate.add(ImageIO.read(new File("img/leftrun3.png")));
-            animate.add(ImageIO.read(new File("img/leftrun4.png")));
-            animate.add(ImageIO.read(new File("img/leftrun5.png")));
-            animate.add(ImageIO.read(new File("img/leftrun6.png")));
-            animate.add(ImageIO.read(new File("img/leftrun7.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun0.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun1.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun2.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun3.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun4.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun5.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun6.png")));
+            animate.add(ImageIO.read(game.class.getResource("/leftrun7.png")));
             
             /** 24-25 fall right/left */
-            animate.add(ImageIO.read(new File("img/ffallr.png")));
-            animate.add(ImageIO.read(new File("img/ffalll.png")));
+            animate.add(ImageIO.read(game.class.getResource("/ffallr.png")));
+            animate.add(ImageIO.read(game.class.getResource("/ffalll.png")));
             
             for(BufferedImage img : animate) {
                 maskCreator(img);
