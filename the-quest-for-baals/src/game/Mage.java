@@ -221,5 +221,17 @@ public class Mage extends Sprite {
         // TODO Auto-generated method stub
         return false;
     }
+
+	@Override
+	public void damage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
     
 }

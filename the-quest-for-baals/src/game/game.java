@@ -18,11 +18,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import nikunj.classes.NewerSound;
+import nikunj.classes.Sound;
 
 public class game extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
     
@@ -63,7 +64,7 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     static BufferedImage delete;
     static BufferedImage back;
     static ArrayList<String> objects = new ArrayList<String>();
-    static NewerSound music;
+    static Sound music;
     JFrame frame;
     boolean checked = false;
     
@@ -79,7 +80,12 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
         // game start screen
         // determines player class and levelbuilderness
         
-        music = new NewerSound("img/w_a_v_e.wav", true);
+        try {
+			music = new Sound("img/w_a_v_e.wav", true);
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         music.play();
         game bp = new game();
         
@@ -123,7 +129,15 @@ public class game extends JPanel implements ActionListener, KeyListener, MouseLi
     	if (!checked)
     	{
         	music.stop();
-    		music = new NewerSound("img/bitty_two.wav", true);
+    		try {
+				music = new Sound("img/bitty_two.wav", true);
+			} catch (UnsupportedAudioFileException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		music.play();
     		Ground.all.clear();
     		frame = new JFrame();

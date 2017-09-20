@@ -93,13 +93,13 @@ public class Melee extends Enemy {
         if(!Sprite.level){
         if(facing) {
             if(awwDidYouHitAWallToYourRight())
-                x += 3;
+                x += 5;
 //            else
 //                x -= 3;
         }
         else {
             if(awwDidYouHitAWallToYourLeft())
-                x -= 3;
+                x -= 5;
 //            else
 //                x += 3;
         }
@@ -132,13 +132,13 @@ public class Melee extends Enemy {
     
     public void jump() 
     {
-    	jumpCount = 12;
-    	if(awwDidYouHitAWallToYourRight() || awwDidYouHitAWallToYourLeft())
-    		if (jumpCount > 0)
-    		{
-    			y-=25;
-    			jumpCount--;
-    		}
+//    	jumpCount = 12;
+//    	if(awwDidYouHitAWallToYourRight() || awwDidYouHitAWallToYourLeft())
+//    		if (jumpCount > 0)
+//    		{
+//    			y-=25;
+//    			jumpCount--;
+//    		}
     		
     		
     }

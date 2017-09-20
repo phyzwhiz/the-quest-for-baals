@@ -24,10 +24,8 @@ public class Level {
         Ground.all.add(new Lava(1000, 600));
         Ground.all.add(new Lava(1100, 600));
         Ground.all.add(new Lava(1200, 600));
-        
         Ground.all.add(new Lava( 800, 400));
-        
-        Ground.enemy.add(new Melee(200, -100));
+        Ground.enemy.add(new Melee(500, 100));
     }
     
     public ArrayList<Block> getGroundList() {
